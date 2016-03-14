@@ -81,9 +81,9 @@ WSGI_APPLICATION = 'main.wsgi.application'
 DATABASES = {
     'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'hives',
-            'USER': 'shugar',
-            'PASSWORD': '0000',
+            'NAME': 'creathive',
+            'USER': 'root',
+            'PASSWORD': 'devildare',
             'HOST': 'localhost',
             'PORT': '',
         }
@@ -95,13 +95,13 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
