@@ -157,7 +157,7 @@
                 $.ajax({
                         'method': 'POST',
                         'url'   :'//'+window.location.hostname+'/accounts/signup/',
-                        'data'  :   signup_data,
+                        'data'  :   JSON.stringify(signup_data),
                         'dataType'  :   'JSON',
                         'success'   :  function(res){
                         }
@@ -182,7 +182,7 @@
                 $.ajax({
                     'method': 'POST',
                     'url': '//' + window.location.hostname + '/accounts/login_account/',
-                    'data': login_data,
+                    'data': JSON.stringify(login_data),
                     'dataType': 'JSON',
                     'success': function (res) {
                         if(res) {
