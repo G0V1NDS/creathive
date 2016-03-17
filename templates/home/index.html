@@ -1,10 +1,9 @@
-{% load static %}
 <!DOCTYPE html>
-<html>
+<html xmlns:mailto="http://www.w3.org/1999/xhtml" xmlns:tel="http://www.w3.org/1999/xhtml">
 
 <head>
 
-  <title>Creathives</title>
+  <title>Creathive</title>
   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
   <meta name="description" content="">
   <meta name="keywords" content="">
@@ -12,29 +11,31 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-  
-  
+
+
   <!-- Favicons -->
-  <link rel="shortcut icon" href="static/images/fav.png">
+  <link rel="shortcut icon" href="/static/images/fav.png">
 
   <!-- Js Links -->
-  <script src="/static/js/jquery-2.1.1.min.js" type="text/javascript"></script>
-  <script src="/static/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="/static/js/jquery-2.1.1.min.js"></script>
+  <script src="/static/js/bootstrap.min.js"></script>
   <script src="/static/js/jquery.sticky.js" type="text/javascript"></script>
-  <script src="/static/js/jquery.nicescroll.min.js" type="text/javascript"></script>
+  <script src="/static/js/jquery.nicescroll.min.js"></script>
   <script src="/static/js/owl.carousel.js" type="text/javascript"></script>
-  
+  <script src="/static/js/_home.js"></script>
+  <script src="/static/js/jquery.validate.min.js"></script>
+  <script type="text/javascript" src="/static/js/_accounts.js"></script>
 
   <!-- CSS -->
-  <link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css">
-  <link rel="stylesheet" href="/static/css/fonts.css" type="text/css"><!-- / template styles -->
-  <link rel="stylesheet" href="/static/css/animate.css" type="text/css"><!-- / template styles -->
-  <link rel="stylesheet" href="/static/css/font-awesome.css" type="text/css"><!-- / template styles -->
-  <link rel="stylesheet" href="/static/css/owl.carousel.css" type="text/css">
-  <link rel="stylesheet" href="/static/css/style.css" type="text/css"><!-- / template styles -->
-{#  <link rel="stylesheet" href="/static/css/www-embed-player-webp-vfl3j4Zuz.css" type="text/css"><!-- / template styles -->#}
+  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/css/fonts.css"><!-- / template styles -->
+  <link rel="stylesheet" href="/static/css/animate.css"><!-- / template styles -->
+  <link rel="stylesheet" href="/static/css/font-awesome.css"><!-- / template styles -->
+  <link rel="stylesheet" href="/static/css/owl.carousel.css">
+  <link rel="stylesheet" href="/static/css/style.css"><!-- / template styles -->
+{#  <link rel="stylesheet" href="css/www-embed-player-webp-vfl3j4Zuz.css">#}
   <style type="text/css">
   a.ytp-youtube-button, .ytp-title-link, .yt-uix-sessionlink{
     display: none !important;
@@ -55,32 +56,32 @@
         <div class="header-midMenu hide">
           <ul>
             <li>
-              <a href="" class="active">
-                <img src="/static/images/Header/all.png" alt="all">
+              <a class='all active'>
+                <img src="/static/images/header/all.png" alt="all">
                 <div>All</div>
               </a>
             </li>
             <li>
-              <a href="">
-                <img src="/static/images/Header/videos.png" alt="videos">
+              <a class='videos'>
+                <img src="/static/images/header/videos.png" alt="videos">
                 <div>Videos</div>
               </a>
             </li>
             <li>
-              <a href="">
-                <img src="/static/images/Header/tracks.png" alt="tracks">
+              <a class='tracks'>
+                <img src="/static/images/header/tracks.png" alt="tracks">
                 <div>Tracks</div>
               </a>
             </li>
             <li>
-              <a href="">
-                <img src="/static/images/Header/images.png" alt="images">
+              <a class='images'>
+                <img src="/static/images/header/images.png" alt="images">
                 <div>Images</div>
               </a>
             </li>
             <li>
-              <a href="">
-                <img src="/static/images/Header/articles.png" alt="articles">
+              <a class='articles'>
+                <img src="/static/images/header/articles.png" alt="articles">
                 <div>Articles</div>
               </a>
             </li>
@@ -88,12 +89,18 @@
         </div>
         <div class="header-rightMenu">
           <span>
-            <a href=""><img src="/static/images/bell.png" alt="Notifications"></a>
+            <a href="#"><img src="/static/images/bell.png" alt="Notifications"></a>
           </span>
-          <span class="header-profilePic"><a href=""><img src="/static/images/user-small.png" alt="Username"></a>
-          </span>
+          <span class="header-profilePic"><a href="#"><img src="/static/images/user-small.png" alt="Username"></a></span>
           <span>
-            <a href=""><img src="/static/images/arrow-down.png" alt="View"></a>
+              <div class="dropdown">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/static/images/arrow-down.png"></a>
+                 <ul class="dropdown-menu">
+                     <form id="logout_form">{% csrf_token %}
+                        <li><a href="#" id="logout">Logout</a></li>
+                     </form>
+                 </ul>
+             </div>
           </span>
         </div>
       </div>
@@ -102,25 +109,25 @@
 
   <!-- Banner -->
   <section id="banner">
-    <img src="/static/images/banner1.png" alt="">
+    <img src="{{ artist.cover_pic }}" alt="">
     <!-- Portfolio Edit -->
-    <a href=""> <img class="edit-wall hide" src="/static/images/Edit/camera1.png" alt="Change"></a>
+    <a href="#"> <img class="edit-wall hide" src="/static/images/edit/camera1.png" alt="Change"></a>
   </section>
 
   <!-- User profile -->
   <section id="userProfile" class="">
     <div class="container">
       <div class="profile_pic_large">
-        <img src="/static/images/user.png" alt="User Name">
+        <img src="{{ artist.profile_pic }}" alt="User Name">
         <!-- Portfolio Edit -->
-        <a href=""> <img class="edit-prof hide" src="/static/images/Edit/camera2.png" alt="Change"></a>
+        <a href="#"> <img class="edit-prof hide" src="/static/images/edit/camera2.png" alt="Change"></a>
       </div>
       <div class="col-lg-4 col-lg-offset-2 col-md-4 col-offset-md-2 col-sm-10 col-sm-offset-2 col-xs-12">
         <!-- Portfolio Edit -->
         <div class="profile_name">
-          <h3 class="color-000" contentEditable="false">Rakesh Sinha</h3>
-          <p class="color-666 user-obj" contentEditable="false">Lorem ipsum diet your text goes here lorem ipsumdiet your text goes here</p>
-          <img src="/static/images/Edit/pen.png" class="edit-pen hide" alt="edit">
+          <h3 class="color-000" contentEditable="false">{{ artist.user.get_full_name }}</h3>
+          <p class="color-666 user-obj" contentEditable="false">{{ artist.about_me }}</p>
+          <img src="/static/images/edit/pen.png" class="edit-pen hide" alt="edit">
         </div>
       </div>
 
@@ -128,40 +135,18 @@
       <div class="col-lg-5 col-lg-offset-1 col-md-6 col-sm-10 col-sm-offset-2 col-xs-12 pad-zero">
         <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12 center-text ">
           <div class="profile_emailId border-divider">
-            <a href="" mailto: class="color-000">
+            <a href="mailto:{{ artist.user.email }}" class="color-000">
               <span><img src="/static/images/mail.png" alt="Email"></span>
-              rakeshsinha@demo.com
+              {{ artist.user.email }}
             </a>
           </div>
         </div>
         <div class="col-lg-5 col-md-5 col-sm-4 col-xs-12 center-text">
           <div class="profile_contactNo border-divider">
-            <a href="" tel: class="color-000">
+            <a href="tel:{{ artist.user.contact }}" class="color-000">
               <span><img src="/static/images/phone.png" alt="Phone"></span>
-              +91-999-999-9999
+              +91-{{ artist.user.contact }}
             </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Skills and Contact -->
-      <div class="col-lg-5 col-lg-offset-1 col-md-6 col-sm-10 col-sm-offset-2 col-xs-12 pad-zero hide">
-        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
-          <div class="profile_skill">
-            <h3>Skills</h3>
-            <p>
-              Lorem ipsum diet your text goes here lorem ipsum 
-            </p>
-          </div>
-        </div>
-        <div class="col-lg-1 col-md-1 hidden-xs hidden-sm pad-zero">
-          <div class="divider"></div>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
-          <div class="profile_contact-sec">
-            <h3>Contact</h3>
-            <button class="btn btn-black hide">Connect</button>
-            <button class="btn btn-black">Hire</button>
           </div>
         </div>
       </div>
@@ -175,12 +160,12 @@
         <ul>
           <li class="active li-br">
             <span>
-              <img src="/static/images/Edit/portfolio.png" alt="Portfolio">
-              Portfolio 
+              <img src="/static/images/edit/portfolio.png" alt="Portfolio">
+              Portfolio
             </span>
           </li>
           <li>
-            <img src="/static/images/Edit/history.png" alt="History">
+            <img src="/static/images/edit/history.png" alt="History">
             History
           </li>
         </ul>
@@ -189,7 +174,7 @@
 
     <div class="upload-content">
       <div class="container">
-        <p class="upload-note">Add more Projects to join the Talent pool <a href=""><img src="/static/images/Edit/ques.png" alt="?"></a></p>
+        <p class="upload-note">Add more Projects to join the Talent pool <a href="#"><img src="/static/images/edit/ques.png" alt="?"></a></p>
         <div class="col-lg-10 col-md-10 col-sm-8 col-xs-12 pl-zero">
           <div class="progress">
             <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;">
@@ -218,77 +203,14 @@
         <!-- view profile -->
         <div class="leftPanel">
           <div class="lp_title">
-            5 Projects
+            1 Projects
             <!-- Portfolio Edit -->
-            <button class="btn btn-black hide">ADD <img src="/static/images/Edit/plus.png" alt="+"></button>
+            <button class="btn btn-black show">ADD <img src="/static/images/edit/plus.png" alt="+"></button>
           </div>
           <hr class="ul-border">
           <div class="left-panel-scroll">
             <ul>
-              <li class="active">
-                <a href="">
-                  <img src="/static/images/latest/lp1.png" alt="Lorem ipsum">
-                  <span>Lorem ipsum</span>
-                  <div class="overLay"></div>
-                  <!-- Portfolio Edit -->
-                  <img src="/static/images/Edit/empty-trash.png" class="emptyTrash" alt="delete">
-                  <img src="/static/images/Edit/trash.png" class="deleteTrash" alt="delete">
-                </a>
-                <!-- Delete Prompt -->
-                <div class="deletePrompt">
-                  <h4>Are you sure?</h4>
-                  <a href="">Cancel</a>
-                  <a href="">Yes, Delete</a>
-                </div>
 
-              </li>
-              <li>
-                <a href="">
-                  <img src="/static/images/latest/lp2.png" alt="Lorem ipsum">
-                  <span>ITC Packaging</span>
-                  <div class="overLay"></div>
-                  <!-- Portfolio Edit -->
-                  <img src="/static/images/Edit/empty-trash.png" class="emptyTrash" alt="delete">
-                  <img src="/static/images/Edit/trash.png" class="deleteTrash" alt="delete">
-                </a>
-                <!-- Delete Prompt -->
-                <div class="deletePrompt">
-                  <h4>Are you sure?</h4>
-                  <a href="">Cancel</a>
-                  <a href="">Yes, Delete</a>
-                </div>
-              </li>
-              <li>
-                <a href="">
-                  <img src="/static/images/latest/lp3.png" alt="Lorem ipsum">
-                  <span>Lorem ipsum</span>
-                  <div class="overLay"></div>
-                  <img src="/static/images/Edit/empty-trash.png" class="emptyTrash" alt="delete">
-                  <img src="/static/images/Edit/trash.png" class="deleteTrash" alt="delete">
-                </a>
-                <!-- Delete Prompt -->
-                <div class="deletePrompt">
-                  <h4>Are you sure?</h4>
-                  <a href="">Cancel</a>
-                  <a href="">Yes, Delete</a>
-                </div>
-              </li>
-              <li>
-                <a href="">
-                  <img src="/static/images/latest/lp3.png" alt="Lorem ipsum">
-                  <span>Lorem ipsum</span>
-                  <div class="overLay"></div>
-                  <!-- Portfolio Edit -->
-                  <img src="/static/images/Edit/empty-trash.png" class="emptyTrash" alt="delete">
-                  <img src="/static/images/Edit/trash.png" class="deleteTrash" alt="delete">
-                </a>
-                <!-- Delete Prompt -->
-                <div class="deletePrompt">
-                  <h4>Are you sure?</h4>
-                  <a href="">Cancel</a>
-                  <a href="">Yes, Delete</a>
-                </div>
-              </li>
             </ul>
           </div>
           <hr class="ul-border">
@@ -302,33 +224,33 @@
         <div class="right_viewArea">
           <div id="anchor-point"></div>
           <ul class="nav-categories">
-            <li class="active">
-              <a href="">
-                <img src="/static/images/Header/all-black.png" alt="all">
+            <li  class='all' class="active">
+              <a style='cursor:pointer'>
+                <img src="/static/images/header/all-black.png" alt="all">
                 <span>All</span>
               </a>
             </li>
-            <li>
-              <a href="">
-                <img src="/static/images/Header/videos-black.png" alt="videos">
+            <li class='videos'>
+              <a style='cursor:pointer'>
+                <img src="/static/images/header/videos-black.png" alt="videos">
                 <span>Videos</span>
               </a>
             </li>
-            <li>
-              <a href="">
-                <img src="/static/images/Header/tracks-black.png" alt="tracks">
+            <li class='tracks'>
+              <a style='cursor:pointer'>
+                <img src="/static/images/header/tracks-black.png" alt="tracks">
                 <span>Tracks</span>
               </a>
             </li>
-            <li>
-              <a href="">
-                <img src="/static/images/Header/images-black.png" alt="images">
+            <li class='images'>
+              <a style='cursor:pointer'>
+                <img src="/static/images/header/images-black.png" alt="images">
                 <span>Images</span>
               </a>
             </li>
-            <li>
-              <a href="">
-                <img src="/static/images/Header/articles-black.png" alt="articles">
+            <li class='articles'>
+              <a style='cursor:pointer'>
+                <img src="/static/images/header/articles-black.png" alt="articles">
                 <span>Articles</span>
               </a>
             </li>
@@ -336,11 +258,11 @@
           <div id="rightView_content">
             <div class="pH_row">
               <div class="titleSection">
-                <span class="p_mt">ITC Packaging</span>
+                <span class="p_mt">Title</span>
                 <span class="p_st">Project Type</span>
               </div>
               <div class="descSection">
-                <p>Lorem ipsum your text goes here lorem ipsum diet your text goes here  lorem ipsum diet your text goes here  lorem ipsum diet your text goes here</p>
+                <p>Project Description</p>
               </div>
             </div>
 
@@ -349,43 +271,49 @@
               <div class="media">
                 <div class="media-left">
                   <a href="#">
-                    <img class="media-object" src="/static/images/Edit/titleImage.png" alt="Upload Image">
+                    <img class="media-object" src="/static/images/edit/titleImage.png" alt="Upload Image">
+                    <form class="form-inline" id='project_title_image_form' style="display: none" enctype="multipart/form-data">
+                      <div class="form-group">
+                        <input type='file' name='project_title_image' id='project_title_image' style='display:none;'>
+                      </div>
+                    </form>
+
                   </a>
                 </div>
                 <div class="media-body">
                   <h4 class="media-heading edit-projTitle" contentEditable="true">
-                    ITC Packaging
+                    Title
                   </h4>
                   <span contentEditable="true" class="edit-projType">
                     Project Type
                   </span>
                   <p contentEditable="true" class="edit-projDesc">
-                    Lorem ipsum diet your text goes here lorem ipsum diet your text goes here Lorem ipsum diet your text goes here Lorem ipsum diet your text goes here Lorem ipsum diet your text goes here
+                    Project Description
                   </p>
                 </div>
-              </div> 
+              </div>
               <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                   <div class="media-tabs">
                     <ul>
                       <li class="icn">
-                        <a href=""> 
-                          <img src="/static/images/Header/videos-black.png" alt="videos">
+                        <a href="#">
+                          <img src="/static/images/header/videos-black.png" alt="videos">
                         </a>
                       </li>
                       <li class="icn">
-                        <a href=""> 
-                          <img src="/static/images/Header/tracks-black.png" alt="Tracks">
+                        <a href="#">
+                          <img src="/static/images/header/tracks-black.png" alt="Tracks">
                         </a>
                       </li>
                       <li class="icn">
-                        <a href=""> 
-                          <img src="/static/images/Header/articles-black.png" alt="Articles">
+                        <a href="#">
+                          <img src="/static/images/header/articles-black.png" alt="Articles">
                         </a>
                       </li>
                       <li class="icn">
-                        <a href=""> 
-                          <img src="/static/images/Header/images-black.png" alt="Images">
+                        <a href="#">
+                          <img src="/static/images/header/images-black.png" alt="Images">
                         </a>
                       </li>
                     </ul>
@@ -394,19 +322,15 @@
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                   <div class="media-upload-URL">
-                    <form class="form-inline">
-                      <div class="form-group">
-                        <label for="mediaURL">ADD URL</label>
-                        <input type="text" class="form-control" id="mediaURL" placeholder="http://">
-                      </div>
-                    </form>
+                    <label for="mediaURL">ADD URL</label>
+                    <input type="text" class="form-control" id="mediaURL" placeholder="http://">
                   </div>
                 </div>
               </div>
-            </div>            
+            </div>
           </div>
 
-          <div class="project_lists">
+          <div class="project_lists show" id='all_list'>
             <!-- Portfolio Edit add class="thumb-edit"-->
             <div class="pl_thumbHolder">
               <div class="thumb-edit-overlay"></div>
@@ -414,7 +338,7 @@
                 <img src="/static/images/latest/lp1.png" alt="demo1">
                 <div class="caption">
                   <p>Lorem ipsum diet your text goes here...</p>
-                  <a href=""><img src="/static/images/Header/videos-black.png" alt="videos"></a>
+                  <a href="#"><img src="/static/images/header/videos-black.png" alt="videos"></a>
                 </div>
                 <!-- Portfolio Edit -->
                 <div class="thumb-edit-icons">
@@ -422,175 +346,106 @@
                     <input type="checkbox" value="None" id="test_1" name="check" />
                     <label for="test_1"></label>
                   </div>
-                  <a href=""><img src="/static/images/Edit/img-pen.png" alt="Edit"></a>
+                  <a href="#"><img src="/static/images/edit/img-pen.png" alt="Edit"></a>
                 </div>
               </div>
             </div>
-            <div class="pl_thumbHolder">
-              <div class="thumb-edit-overlay"></div>
-              <div class="thumbnail">
-                <img src="/static/images/latest/lp4.png" alt="demo1">
-                <div class="caption">
-                  <p>Lorem ipsum diet your text goes here...</p>
-                  <a href=""><img
-                    src="/static/images/Header/tracks-black.png" alt="Tracks">
-                  </a>
-                </div>
-
-                <!-- Portfolio Edit -->
-                <div class="thumb-edit-icons hide">
-                  <div class="squaredThree">
-                    <input type="checkbox" value="None" name="check" />
-                    <label></label>
-                  </div>
-                  <a href=""><img src="/static/images/Edit/img-pen.png" alt="Edit"></a>
-                </div>
-              </div>
-            </div>
-            <div class="pl_thumbHolder">
-              <div class="thumb-edit-overlay"></div>
-              <div class="thumbnail">
-                <img src="/static/images/latest/lp1.png" alt="demo1">
-                <div class="caption">
-                  <p>Lorem ipsum diet your text goes here...</p>
-                  <a href=""><img src="/static/images/Header/articles-black.png" alt="articles"></a>
-                </div>
-
-                <!-- Portfolio Edit -->
-                <div class="thumb-edit-icons hide">
-                  <div class="squaredThree">
-                    <input type="checkbox" value="None" name="check" />
-                    <label></label>
-                  </div>
-                  <a href=""><img src="/static/images/Edit/img-pen.png" alt="Edit"></a>
-                </div>
-              </div>
-            </div>
-            <div class="pl_thumbHolder">
-              <div class="thumb-edit-overlay"></div>
-              <div class="thumbnail">
-                <img src="/static/images/latest/lp3.png" alt="demo1">
-                <div class="caption">
-                  <p>Lorem ipsum diet your text goes here...</p>
-                  <a href=""><img src="/static/images/Header/videos-black.png" alt="videos"></a>
-                </div>
-
-                <!-- Portfolio Edit -->
-                <div class="thumb-edit-icons hide">
-                  <div class="squaredThree">
-                    <input type="checkbox" value="None" name="check" />
-                    <label></label>
-                  </div>
-                  <a href=""><img src="/static/images/Edit/img-pen.png" alt="Edit"></a>
-                </div>
-              </div>
-            </div>
-            <div class="pl_thumbHolder"> 
-              <div class="thumb-edit-overlay"></div>
-              <div class="thumbnail">
-                <img src="/static/images/latest/lp1.png" alt="demo1">
-                <div class="caption">
-                  <p>Lorem ipsum diet your text goes here...</p>
-                  <a href=""><img src="/static/images/Header/videos-black.png" alt="videos"></a>
-                </div>
-
-                <!-- Portfolio Edit -->
-                <div class="thumb-edit-icons hide">
-                  <div class="squaredThree">
-                    <input type="checkbox" value="None" name="check" />
-                    <label></label>
-                  </div>
-                  <a href=""><img src="/static/images/Edit/img-pen.png" alt="Edit"></a>
-                </div>
-              </div>
-            </div>
-            <div class="pl_thumbHolder">
-              <div class="thumb-edit-overlay"></div>
-              <div class="thumbnail">
-                <img src="/static/images/latest/lp4.png" alt="demo1">
-                <div class="caption">
-                  <p>Lorem ipsum diet your text goes here...</p>
-                  <a href=""><img src="/static/images/Header/videos-black.png" alt="videos"></a>
-                </div>
-
-                <!-- Portfolio Edit -->
-                <div class="thumb-edit-icons hide">
-                  <div class="squaredThree">
-                    <input type="checkbox" value="None" name="check" />
-                    <label></label>
-                  </div>
-                  <a href=""><img src="/static/images/Edit/img-pen.png" alt="Edit"></a>
-                </div>
-              </div>
-            </div>
+          </div>
+          <div class="project_lists hide" id='videos_list'>
+            <!-- Portfolio Edit add class="thumb-edit"-->
             <div class="pl_thumbHolder">
               <div class="thumb-edit-overlay"></div>
               <div class="thumbnail">
                 <img src="/static/images/latest/lp2.png" alt="demo1">
                 <div class="caption">
                   <p>Lorem ipsum diet your text goes here...</p>
-                  <a href=""><img src="/static/images/Header/videos-black.png" alt="videos"></a>
+                  <a href="#"><img src="/static/images/header/videos-black.png" alt="videos"></a>
                 </div>
-
                 <!-- Portfolio Edit -->
-                <div class="thumb-edit-icons hide">
+                <div class="thumb-edit-icons">
                   <div class="squaredThree">
-                    <input type="checkbox" value="None" name="check" />
-                    <label></label>
+                    <input type="checkbox" value="None" id="test_1" name="check" />
+                    <label for="test_1"></label>
                   </div>
-                  <a href=""><img src="/static/images/Edit/img-pen.png" alt="Edit"></a>
+                  <a href="#"><img src="/static/images/edit/img-pen.png" alt="Edit"></a>
                 </div>
               </div>
             </div>
+          </div>
+          <div class="project_lists hide" id='tracks_list'>
+            <!-- Portfolio Edit add class="thumb-edit"-->
             <div class="pl_thumbHolder">
               <div class="thumb-edit-overlay"></div>
               <div class="thumbnail">
                 <img src="/static/images/latest/lp3.png" alt="demo1">
                 <div class="caption">
                   <p>Lorem ipsum diet your text goes here...</p>
-                  <a href=""><img src="/static/images/Header/videos-black.png" alt="videos"></a>
+                  <a href="#"><img src="/static/images/header/videos-black.png" alt="videos"></a>
                 </div>
-
                 <!-- Portfolio Edit -->
-                <div class="thumb-edit-icons hide">
+                <div class="thumb-edit-icons">
                   <div class="squaredThree">
-                    <input type="checkbox" value="None" name="check" />
-                    <label></label>
+                    <input type="checkbox" value="None" id="test_1" name="check" />
+                    <label for="test_1"></label>
                   </div>
-                  <a href=""><img src="/static/images/Edit/img-pen.png" alt="Edit"></a>
-                </div>
-              </div>
-            </div>
-            <div class="pl_thumbHolder">
-              <div class="thumb-edit-overlay"></div>
-              <div class="thumbnail">
-                <img src="/static/images/latest/lp2.png" class="thumb-img" alt="demo1">
-                <div class="caption">
-                  <p>Lorem ipsum diet your text goes here...</p>
-                  <a href=""><img src="/static/images/Header/videos-black.png" alt="videos"></a>
-                </div>
-
-                <!-- Portfolio Edit -->
-                <div class="thumb-edit-icons hide">
-                  <div class="squaredThree">
-                    <input type="checkbox" value="None" name="check" />
-                    <label></label>
-                  </div>
-                  <a href=""><img src="/static/images/Edit/img-pen.png" alt="Edit"></a>
+                  <a href="#"><img src="/static/images/edit/img-pen.png" alt="Edit"></a>
                 </div>
               </div>
             </div>
           </div>
+          <div class="project_lists hide" id='images_list'>
+            <!-- Portfolio Edit add class="thumb-edit"-->
+            <div class="pl_thumbHolder">
+              <div class="thumb-edit-overlay"></div>
+              <div class="thumbnail">
+                <img src="/static/images/latest/lp4.png" alt="demo1">
+                <div class="caption">
+                  <p>Lorem ipsum diet your text goes here...</p>
+                  <a href="#"><img src="/static/images/header/videos-black.png" alt="videos"></a>
+                </div>
+                <!-- Portfolio Edit -->
+                <div class="thumb-edit-icons">
+                  <div class="squaredThree">
+                    <input type="checkbox" value="None" id="test_1" name="check" />
+                    <label for="test_1"></label>
+                  </div>
+                  <a href="#"><img src="/static/images/edit/img-pen.png" alt="Edit"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project_lists hide" id='articles_list'>
+            <!-- Portfolio Edit add class="thumb-edit"-->
+            <div class="pl_thumbHolder">
+              <div class="thumb-edit-overlay"></div>
+              <div class="thumbnail">
+                <img src="/static/images/latest/lp1.png" alt="demo1">
+                <div class="caption">
+                  <p>Lorem ipsum diet your text goes here...</p>
+                  <a href="#"><img src="/static/images/header/videos-black.png" alt="videos"></a>
+                </div>
+                <!-- Portfolio Edit -->
+                <div class="thumb-edit-icons">
+                  <div class="squaredThree">
+                    <input type="checkbox" value="None" id="test_1" name="check" />
+                    <label for="test_1"></label>
+                  </div>
+                  <a href="#"><img src="/static/images/edit/img-pen.png" alt="Edit"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
         </div>
 
         <!-- Portfolio Edit -->
         <div class="countDisplay hide">
           <span>3</span> images and <span>5</span> videos selected
           <button class="btn btn-black">DELETE</button>
-        </div> 
+        </div>
 
-        <!-- Video Gallery -->
-
+        </div>
         <div class="video-modal">
           <div class="gallery-header">
             <h4>Add a project title</h4>
@@ -601,12 +456,12 @@
               <div class="player">
                 <div class="mediaplayer">
                   <!-- <div class="ytp-hide-layer"></div> -->
-                  <!-- <video controls preload=metadata width='1280' height='480' poster='media/samplevideo.jpg'> 
-                    <source src='/static/images/mango.mp4' type="video/mp4"><source src='/static/images/mango.webm' type="video/webm"><source src='/static/images/mango.ogg' type="video/ogg"> 
-                      <p>Please use a modern browser to view this video.</p> 
+                  <!-- <video controls preload=metadata width='1280' height='480' poster='media/samplevideo.jpg'>
+                    <source src='/static/images/mango.mp4' type="video/mp4"><source src='/static/images/mango.webm' type="video/webm"><source src='/static/images/mango.ogg' type="video/ogg">
+                      <p>Please use a modern browser to view this video.</p>
                     </video> -->
                   <iframe width="100%" height="100%" scrolling="no" title="YouTube video player" src="//www.youtube.com/embed/ni-1ielKlsk?showinfo=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;nologo=1&amp;controls=2&amp;rel=0&amp;autohide=1&amp;wmode=transparent&amp;enablejsapi=1&amp;html5=1&amp;" frameborder="0" allowfullscreen=""></iframe>
-                </div>  
+                </div>
                 <div class="loader-display hide">
                   <div class="upload-progress-bar">
                     <div class="progress">
@@ -618,7 +473,7 @@
                     <img src="/static/images/loader-img.png" alt="Loader">
                     <label>Loading...</label>
                   </div>
-                </div> 
+                </div>
               </div>
 
             </div>
@@ -631,32 +486,32 @@
                       </div>
                     </div>
                   </div>
-                  <a href="" class="active">
+                  <a href="#" class="active">
                     <img src="/static/images/latest/project1.png" alt="">
                   </a>
                 </li>
                 <li>
-                  <a href="">
+                  <a href="#">
                     <img src="/static/images/latest/project1.png" alt="">
                   </a>
                 </li>
                 <li>
-                  <a href="">
+                  <a href="#">
                     <img src="/static/images/latest/project1.png" alt="">
                   </a>
                 </li>
                 <li>
-                  <a href="">
+                  <a href="#">
                     <img src="/static/images/latest/project1.png" alt="">
                   </a>
                 </li>
                 <li>
-                  <a href="">
+                  <a href="#">
                     <img src="/static/images/latest/project1.png" alt="">
                   </a>
                 </li>
                 <li>
-                  <a href="">
+                  <a href="#">
                     <img src="/static/images/latest/project1.png" alt="">
                   </a>
                 </li>
@@ -671,32 +526,32 @@
             <div class="video-thumbnails small">
               <ul>
                 <li>
-                  <a href="" class="active">
+                  <a href="#" class="active">
                     <img src="/static/images/latest/project1.png" alt="">
                   </a>
                 </li>
                 <li>
-                  <a href="">
+                  <a href="#">
                     <img src="/static/images/latest/project1.png" alt="">
                   </a>
                 </li>
                 <li>
-                  <a href="">
+                  <a href="#">
                     <img src="/static/images/latest/project1.png" alt="">
                   </a>
                 </li>
                 <li>
-                  <a href="">
+                  <a href="#">
                     <img src="/static/images/latest/project1.png" alt="">
                   </a>
                 </li>
                 <li>
-                  <a href="">
+                  <a href="#">
                     <img src="/static/images/latest/project1.png" alt="">
                   </a>
                 </li>
                 <li>
-                  <a href="">
+                  <a href="#">
                     <img src="/static/images/latest/project1.png" alt="">
                   </a>
                 </li>
@@ -705,7 +560,7 @@
             <div class="video-desc">
               <h4>Video Details</h4>
               <h5>Video title pulled from youtube</h5>
-              <a href="">https://www.youtube.com/watch?v=brME5ZgKbUo</a>
+              <a href="#">https://www.youtube.com/watch?v=brME5ZgKbUo</a>
               <h5>Lorem ipsum diet your text goes here</h5>
               <hr>
               <p>Lorem ipsum diet your text goes here your text goes here your text goes here </p>
@@ -733,22 +588,22 @@
               <div class="col-md-8 col-sm-8 col-xs-12 pad-zero">
                 <ul>
                   <li>
-                    <a href="">
+                    <a href="#">
                       <img src="/static/images/social/fb.png">
                     </a>
                   </li>
                   <li>
-                    <a href="">
+                    <a href="#">
                       <img src="/static/images/social/twitter.png">
                     </a>
                   </li>
                   <li>
-                    <a href="">
+                    <a href="#">
                       <img src="/static/images/social/in.png">
                     </a>
                   </li>
                   <li>
-                    <a href="">
+                    <a href="#">
                       <img src="/static/images/social/gplus.png">
                     </a>
                   </li>
@@ -757,19 +612,6 @@
             </div>
           </div>
           <div class="col-md-5 col-md-offset-1 col-sm-6 col-xs-12 pad-zero">
-            <form class="form-inline form-inline-align">
-              <div class="form-group col-sm-12">
-                <label for="exampleInputEmail1" class="col-md-12">Subscribe to our Newsletters</label>
-                <div class="col-md-12 pad-zero">
-                  <div class="input-group input-grp-align">
-                    <input type="text" class="form-control email-id" id="exampleInputName2" placeholder="Enter your email">
-                    <span class="input-group-addon addon-align">
-                      <i class="fa fa-paper-plane"></i>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </form>
           </div>
         </div>
       </div>
@@ -782,19 +624,19 @@
         </div>
         <div class="page-foo-links">
           <ul>
-            <li><a href="">Join the Talent Pool</a></li>
+            <li><a href="#">Join the Talent Pool</a></li>
             <li>|</li>
-            <li><a href="">Book a Venue</a></li>
+            <li><a href="#">Book a Venue</a></li>
             <li>|</li>
-            <li><a href="">Hire a Conceptual Artist</a></li>
+            <li><a href="#">Hire a Conceptual Artist</a></li>
             <li>|</li>
-            <li><a href="">How it Works</a></li>
+            <li><a href="#">How it Works</a></li>
             <li>|</li>
-            <li><a href="">T&C</a></li>
+            <li><a href="#">T&C</a></li>
             <li>|</li>
-            <li><a href="">Privacy Policy</a></li>
+            <li><a href="#">Privacy Policy</a></li>
             <li>|</li>
-            <li><a href="">Support</a></li>
+            <li><a href="#">Support</a></li>
           </ul>
         </div>
       </div>
@@ -829,9 +671,7 @@
       myVideo.pause(); 
       $('.play-icon').show();
     }
-  } 
-
-
+  }
   </script>
 </body>
 </html>

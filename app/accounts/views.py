@@ -1,7 +1,9 @@
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate,login as auth_login, logout as auth_logout
+from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
+from django.views.decorators.csrf import ensure_csrf_cookie
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.parsers import JSONParser
@@ -9,11 +11,16 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
 from app.accounts.serializers import SignupSerializer, LoginSerializer
+from app.home.models import Artist
 from models import Account
 
 
 def login(request):
-    return render(request, 'accounts/index.html')
+    if request.user.is_authenticated():
+        print request.user
+        return HttpResponseRedirect('/home/')
+    else:
+        return render(request, 'accounts/index.html')
 
 
 def check_username(request):
@@ -31,17 +38,6 @@ def check_email(request):
     else:
         return HttpResponse('true')
 
-
-# def signup(request):
-#     username=request.POST.get('username', None)
-#     password=request.POST.get('password', None)
-#     email=request.POST.get('email', None)
-#     fname=request.POST.get('fname', None)
-#     lname=request.POST.get('lname', None)
-#
-#     record=Account(username=username,fname=fname,lname=lname,email=email,password=password)
-#     record.save();
-#     return HttpResponse('Registered')
 
 @api_view(['GET', 'POST', ])
 @permission_classes((AllowAny,))
@@ -61,23 +57,12 @@ def signup(request):
                             status=status.HTTP_400_BAD_REQUEST)
         else:
             user = serializer.save()
+            artist = Artist.objects.create(user=user)
             return Response({
                     'status': 'Created',
                     'message': 'User created'
                 }, status=status.HTTP_201_CREATED)
 
-# def login_account(request):
-#     username=request.POST.get('username', None)
-#     password=request.POST.get('password', None)
-#     record=Account.objects.filter(username=username,password=password)
-#     if record.count()>0:
-#         return HttpResponse('true')
-#     else:
-#         return HttpResponse('false')
-
-
-def auth_login(request, account):
-    pass
 
 
 @api_view(['POST'])
@@ -94,8 +79,6 @@ def login_account(request):
         password = data.get('password', None)
 
         account = authenticate(username=username, password=password)
-        print username, password
-        print account
         if account is not None:
 
             if not account.is_email_verified:
@@ -119,3 +102,8 @@ def login_account(request):
                 'status': 'Unauthorized',
                 'message': 'Username/password combination invalid.'
             }, status=status.HTTP_401_UNAUTHORIZED)
+
+@login_required
+def logout_account(request):
+    auth_logout(request)
+    return HttpResponse('Successfully Logout')
