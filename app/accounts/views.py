@@ -50,6 +50,7 @@ def signup(request):
     """
     if request.method == 'POST':
         data = JSONParser().parse(request)
+        print data
         serializer = SignupSerializer(data=data)
 
         if not serializer.is_valid():

@@ -23,7 +23,7 @@ class Project(models.Model):
     artist = models.ForeignKey(Artist)
     title = models.CharField(max_length=30)
     description = models.TextField()
-    thumbnail = models.URLField(default='/static/images/projects.png')
+    thumbnail = models.URLField(default='/static/images/edit/titleImage.png')
     type = models.CharField(max_length=30)
     created = models.DateTimeField(default=timezone.now, blank=True)
 

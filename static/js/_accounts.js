@@ -48,6 +48,11 @@
                     required: true,
                     equalTo: "#signup_password"
                 },
+                signup_contact: {
+                    required: true,
+                    maxlength: 10,
+                    number: true
+                },
                 signup_email:   {
                     required: true,
                     email:  true,
@@ -77,6 +82,11 @@
                 signup_password_confirm:{
                     required:   "Please Confirm Password"
                 },
+                signup_contact:{
+                    required:   "Please Enter Mobile Number",
+                    maxlength: "Number Should Not Exceed 10 Digits",
+                    number: "Only Digits Allowed"
+                },
                 signup_email:{
                     required:   "Please Enter Email",
                     email:  "Please Enter Valid Email",
@@ -89,30 +99,20 @@
                     'last_name':    $('#signup_lname').val(),
                     'username':    $('#signup_username').val(),
                     'email':    $('#signup_email').val(),
+                    'contact_number':  $('#signup_contact').val(),
                     'password':    $('#signup_password').val()
                 };
-                console.log(signup_data);
-                $.ajax({
-                        'method': 'POST',
-                        'url'   :'//'+window.location.hostname+'/accounts/signup/',
-                        'data'  :   JSON.stringify(signup_data),
-                        'dataType'  :   'JSON',
-                        'success'   :  function(res){
-                            var login_data={
-                                'username': $('#signup_username').val(),
-                                'password': $('#signup_password').val()
-                            };
-                            $.ajax({
-                                'method': 'POST',
-                                'url': '//' + window.location.hostname + '/accounts/login_account/',
-                                'data': JSON.stringify(login_data),
-                                'dataType': 'JSON',
-                                'success':  function (res) {
-                                    window.location = '/home/';
-                                }
-                            })
-                        }
-                })
+                //console.log(signup_data);
+                //alert(signup_data);
+                ajaxHandle.ajax_req('//'+window.location.hostname+'/accounts/signup/','POST',signup_data,function(res){
+                    var login_data={
+                        'username': $('#signup_username').val(),
+                        'password': $('#signup_password').val()
+                    };
+                    ajaxHandle.ajax_req('//'+window.location.hostname+'/accounts/login_account/','POST',login_data,function(res){
+                        window.location = '/home/';
+                    });
+                });
             }
         });
         $( "#login_form" ).validate({
@@ -130,41 +130,20 @@
                     'password': $('#login_password').val()
                 };
                 $('#login_submit-error').css('display','none');
-                $.ajax({
-                    'method': 'POST',
-                    'url': '//' + window.location.hostname + '/accounts/login_account/',
-                    'data': JSON.stringify(login_data),
-                    'dataType': 'JSON',
-                    'success':  function (res) {
+                ajaxHandle.ajax_req('//'+window.location.hostname+'/accounts/login_account/','POST',login_data,function(res){
                         localStorage.setItem('token',res);
                         window.location = '//'+window.location.hostname+'/home/';
                     },
-                    'error':    function(res){
+                    function(res){
                         var login_error=$('#login_submit-error');
                         login_error.html('Incorrect Credentials');
                         login_error.css('display','');
-
                     }
-                })
+                );
             }
         });
         $.ajaxSetup({
-             headers: { "X-CSRFToken": getCookie("csrftoken") }
+             headers: { "X-CSRFToken": ajaxHandle.getCookie('csrftoken') }
             });
 
     });
-    function getCookie(c_name)
-        {
-            if (document.cookie.length > 0)
-            {
-                c_start = document.cookie.indexOf(c_name + "=");
-                if (c_start != -1)
-                {
-                    c_start = c_start + c_name.length + 1;
-                    c_end = document.cookie.indexOf(";", c_start);
-                    if (c_end == -1) c_end = document.cookie.length;
-                    return unescape(document.cookie.substring(c_start,c_end));
-                }
-            }
-            return "";
-        }

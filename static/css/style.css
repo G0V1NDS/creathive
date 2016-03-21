@@ -981,6 +981,12 @@ body{
 		right: 5px;
 		cursor: pointer;
 	}
+	.profile_name .edit-save{
+		position: absolute;
+		top: 25px;
+		right: 5px;
+		cursor: pointer;
+	}
 	.profile_emailId {
 		border-right: 1px solid #ddd;
 	}
