@@ -4,7 +4,7 @@ $(document).ready(function(){
 	function modalHeight() {
 		videoHeight = $(window).height();
 		$('.video-modal').css('height', videoHeight - 50);
-	};
+	}
 	modalHeight();
 
 	$(window).resize(function() {
@@ -12,14 +12,14 @@ $(document).ready(function(){
 	});
 
 
-	if ($(window).width() >= 768) {  
-		function setHeight() {
+	if ($(window).width() >= 768) {
+        function setHeight() {
 			windowHeight = $(window).height();
 			$('#main_Content').css('min-height', windowHeight);
 			$('.right_viewArea').css('min-height', windowHeight + 20);
 			$('.leftPanel').css('min-height', windowHeight);
 			$('.left-panel-scroll').css('height', windowHeight - 200);
-		};
+		}
 		setHeight();
 
 		$(window).resize(function() {
@@ -30,22 +30,19 @@ $(document).ready(function(){
 
 		$('.leftPanel ul li').click(function(event){
 			event.preventDefault();
-			$('#leftView').addClass('mob-none');
-			$('#rightView').removeClass('mob-none');
 			$('.leftPanel ul li').removeClass('active');
-			$('.deletePrompt').hide();
 			$(this).addClass('active');
-		})
+		});
 		$('.video-thumbnails.large ul li a').click(function(event){
 			event.preventDefault();
 			$('.video-thumbnails.large ul li a').removeClass('active');
 			$(this).addClass('active');
-		})
+		});
 		$('.video-thumbnails.small ul li a').click(function(event){
 			event.preventDefault();
 			$('.video-thumbnails.small ul li a').removeClass('active');
 			$(this).addClass('active');
-		})
+		});
 
 		$(".leftPanel").sticky({topSpacing:80});
 
@@ -90,7 +87,7 @@ $(document).ready(function(){
 	// Delete prompt
 	$('.deleteTrash').on('click', function(){
 		$(this).closest('li').find('.deletePrompt').show();
-	})
+	});
 
 
 	// Video modal open
@@ -98,12 +95,12 @@ $(document).ready(function(){
 		$('body').css('overflow', 'hidden');
 		$('.video-modal').fadeIn();
 		$('.body-overlay').fadeIn();
-	})
+	});
 	$('.btn-done').click(function(){
 		$('body').css('overflow', 'visible');
 		$('.video-modal').fadeOut();
 		$('.body-overlay').fadeOut();
 	})
-}) 
+});
 
 

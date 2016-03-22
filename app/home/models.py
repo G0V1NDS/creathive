@@ -20,11 +20,11 @@ class Artist(models.Model):
 
 
 class Project(models.Model):
-    artist = models.ForeignKey(Artist)
-    title = models.CharField(max_length=30)
-    description = models.TextField()
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
+    title = models.CharField(max_length=30,default='Title')
+    description = models.TextField(default='Description')
     thumbnail = models.URLField(default='/static/images/edit/titleImage.png')
-    type = models.CharField(max_length=30)
+    type = models.CharField(max_length=30,default='Type')
     created = models.DateTimeField(default=timezone.now, blank=True)
 
     def __unicode__(self):
@@ -37,7 +37,7 @@ admin.site.register(Project)
 
 
 class Media(models.Model):
-    project = models.ForeignKey(Project)
+    project = models.ForeignKey(Project,on_delete=models.CASCADE)
     title = models.TextField()
     description = models.TextField(null=True, blank=True)
     thumbnail = models.URLField(default='/static/images/thumb.png')

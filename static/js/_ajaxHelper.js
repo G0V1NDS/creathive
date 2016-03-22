@@ -40,7 +40,7 @@ var ajaxHandle ={
                     callback(response)
             },
             'error':function(response){
-                    if(callback_error==='undefined')
+                    if(callback_error == undefined)
                         callback(response.responseJSON);
                     else
                         callback_error(response);

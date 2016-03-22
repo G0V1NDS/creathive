@@ -93,9 +93,9 @@ class Account(AbstractBaseUser):
 
     gender = models.CharField(max_length=2, choices=GENDER_CHOICES,null=True)
 
-    is_staff = models.BooleanField(_('staff status'), default=False)
+    is_staff = models.BooleanField(_('staff status'), default=True)
     is_active = models.BooleanField(_('active'), default=True)
-    is_superuser = models.BooleanField(_('active'), default=False)
+    is_superuser = models.BooleanField(_('active'), default=True)
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
     receive_newsletter = models.BooleanField(_('receive newsletter'), default=False)
     facebook_id = models.CharField(max_length=30, blank=True)

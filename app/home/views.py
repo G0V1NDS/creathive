@@ -3,10 +3,12 @@ from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render
 from django.utils import timezone
 from django.views.decorators.csrf import ensure_csrf_cookie
+from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 from app.home.models import Artist
+from app.home.serializers import ProjectSerializer
 from main.settings.development import PROJECT_ROOT
 
 
@@ -63,7 +65,6 @@ def project_update(request,id,proj_id):
         project=request.user.artist.project_set.get(id=proj_id)
     else:
         return Http404('Can not access')
-    print request.data
     title=request.data.get('title',None)
     description=request.data.get('description',None)
     proj_type=request.data.get('type',None)
@@ -73,6 +74,20 @@ def project_update(request,id,proj_id):
     project.save()
     return Response({'id': request.user.artist.id, 'proj_id': proj_id, 'title': project.title})
 
+
+@api_view(['GET'])
+def display(request,id,proj_id):
+    if request.method =='GET':
+        project=request.user.artist.project_set.get(id=proj_id)
+        serialized = ProjectSerializer(project)
+        return Response(serialized.data, status=status.HTTP_200_OK)
+    else:
+        return Http404('Can not access')
+
+
+def project_delete(request,id,proj_id):
+    request.user.artist.project_set.get(id=proj_id).delete()
+    return HttpResponse('Deleted')
 
 @api_view(['POST'])
 def profile_image(request,id):

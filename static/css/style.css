@@ -987,6 +987,12 @@ body{
 		right: 5px;
 		cursor: pointer;
 	}
+	.edit-proj{
+		position: absolute;
+		top: 70px;
+		right: 35px;
+		cursor: pointer;
+	}
 	.profile_emailId {
 		border-right: 1px solid #ddd;
 	}

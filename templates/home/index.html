@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:mailto="http://www.w3.org/1999/xhtml" xmlns:tel="http://www.w3.org/1999/xhtml">
+<html xmlns:mailto="http://www.w3.org/1999/xhtml" xmlns:tel="http://www.w3.org/1999/xhtml"
+      xmlns="http://www.w3.org/1999/html">
 
 <head>
 
@@ -28,6 +29,7 @@
   <script src="/static/js/jquery.validate.min.js"></script>
   <script type="text/javascript" src="/static/js/_accounts.js"></script>
   <script type="text/javascript" src="/static/js/_ajaxHelper.js"></script>
+{#  <script type="text/javascript" src="/static/js/script.js"></script>#}
 
   <!-- CSS -->
   <link rel="stylesheet" href="/static/css/bootstrap.min.css">
@@ -57,31 +59,31 @@
         <div class="header-midMenu hide">
           <ul>
             <li>
-              <a class='all active'>
+              <a class='all active tabs'>
                 <img src="/static/images/header/all.png" alt="all">
                 <div>All</div>
               </a>
             </li>
             <li>
-              <a class='videos'>
+              <a class='videos tabs'>
                 <img src="/static/images/header/videos.png" alt="videos">
                 <div>Videos</div>
               </a>
             </li>
             <li>
-              <a class='tracks'>
+              <a class='tracks tabs'>
                 <img src="/static/images/header/tracks.png" alt="tracks">
                 <div>Tracks</div>
               </a>
             </li>
             <li>
-              <a class='images'>
+              <a class='images tabs'>
                 <img src="/static/images/header/images.png" alt="images">
                 <div>Images</div>
               </a>
             </li>
             <li>
-              <a class='articles'>
+              <a class='articles tabs'>
                 <img src="/static/images/header/articles.png" alt="articles">
                 <div>Articles</div>
               </a>
@@ -215,7 +217,7 @@
         <!-- view profile -->
         <div class="leftPanel">
           <div class="lp_title">
-            {{ projects.count }} Projects
+            <span id="count">{{ projects.count }}</span> Projects
             <!-- Portfolio Edit -->
             <button class="btn btn-black show">ADD <img src="/static/images/edit/plus.png" alt="+"></button>
           </div>
@@ -232,10 +234,10 @@
                             <img src="/static/images/edit/empty-trash.png" class="emptyTrash" alt="delete">
                             <img src="/static/images/edit/trash.png" class="deleteTrash" alt="delete">
                         </a>
-                        <div class="deletePrompt hide">
+                        <div class="deletePrompt" style="display: none;">
                             <h4>Are you sure?</h4>
-                            <a href="#">Cancel</a>
-                            <a href="#">Yes, Delete</a>
+                            <a href="#" class="no">Cancel</a>
+                            <a href="#" class="yes">Yes, Delete</a>
                         </div>
                     </li>
                 {% endfor %}
@@ -253,31 +255,31 @@
         <div class="right_viewArea">
           <div id="anchor-point"></div>
           <ul class="nav-categories">
-            <li  class="all active">
+            <li  class="all active tabs">
               <a style='cursor:pointer'>
                 <img src="/static/images/header/all-black.png" alt="all">
                 <span>All</span>
               </a>
             </li>
-            <li class='videos'>
+            <li class='videos tabs'>
               <a style='cursor:pointer'>
                 <img src="/static/images/header/videos-black.png" alt="videos">
                 <span>Videos</span>
               </a>
             </li>
-            <li class='tracks'>
+            <li class='tracks tabs'>
               <a style='cursor:pointer'>
                 <img src="/static/images/header/tracks-black.png" alt="tracks">
                 <span>Tracks</span>
               </a>
             </li>
-            <li class='images'>
+            <li class='images tabs'>
               <a style='cursor:pointer'>
                 <img src="/static/images/header/images-black.png" alt="images">
                 <span>Images</span>
               </a>
             </li>
-            <li class='articles'>
+            <li class='articles tabs'>
               <a style='cursor:pointer'>
                 <img src="/static/images/header/articles-black.png" alt="articles">
                 <span>Articles</span>
@@ -285,13 +287,14 @@
             </li>
           </ul>
           <div id="rightView_content">
-            <div class="pH_row" data-proj-id="0">
+            <div class="pH_row" data-proj-id="{{ projects.0.id }}">
+              <img src="/static/images/edit/pen.png" class="edit-proj show" alt="edit">
               <div class="titleSection">
-                <span class="p_mt">Title</span>
-                <span class="p_st">Project Type</span>
+                <span class="p_mt">{{ projects.0.title }}</span>
+                <span class="p_st">{{ projects.0.type }}</span>
               </div>
               <div class="descSection">
-                <p>Project Description</p>
+                <p>{{ projects.0.description }}</p>
               </div>
             </div>
 
@@ -328,21 +331,41 @@
                         <a href="#">
                           <img src="/static/images/header/videos-black.png" alt="videos">
                         </a>
+                        <form class="form-inline" id='video_upload' style="display: none" enctype="multipart/form-data">
+                          <div class="form-group">
+                            <input type='file' name='video_upload' id='video_upload' style='display:none;'>
+                          </div>
+                        </form>
                       </li>
                       <li class="icn">
                         <a href="#">
                           <img src="/static/images/header/tracks-black.png" alt="Tracks">
                         </a>
+                        <form class="form-inline" id='audio_upload' style="display: none" enctype="multipart/form-data">
+                          <div class="form-group">
+                            <input type='file' name='audio_upload' id='audio_upload' style='display:none;'>
+                          </div>
+                        </form>
                       </li>
                       <li class="icn">
                         <a href="#">
                           <img src="/static/images/header/articles-black.png" alt="Articles">
                         </a>
+                        <form class="form-inline" id='article_upload' style="display: none" enctype="multipart/form-data">
+                          <div class="form-group">
+                            <input type='file' name='article_upload' id='article_upload' style='display:none;'>
+                          </div>
+                        </form>
                       </li>
                       <li class="icn">
                         <a href="#">
                           <img src="/static/images/header/images-black.png" alt="Images">
                         </a>
+                        <form class="form-inline" id='image_upload' style="display: none" enctype="multipart/form-data">
+                          <div class="form-group">
+                            <input type='file' name='image_upload' id='image_upload' style='display:none;'>
+                          </div>
+                        </form>
                       </li>
                     </ul>
                     <p>Click to upload media</p>
@@ -358,7 +381,7 @@
             </div>
           </div>
 
-          <div class="project_lists show" id='all_list'>
+          <div class="project_lists show" id='project-data'>
             <!-- Portfolio Edit add class="thumb-edit"-->
             <div class="pl_thumbHolder">
               <div class="thumb-edit-overlay"></div>
@@ -379,91 +402,6 @@
               </div>
             </div>
           </div>
-          <div class="project_lists hide" id='videos_list'>
-            <!-- Portfolio Edit add class="thumb-edit"-->
-            <div class="pl_thumbHolder">
-              <div class="thumb-edit-overlay"></div>
-              <div class="thumbnail">
-                <img src="/static/images/latest/lp2.png" alt="demo1">
-                <div class="caption">
-                  <p>Lorem ipsum diet your text goes here...</p>
-                  <a href="#"><img src="/static/images/header/videos-black.png" alt="videos"></a>
-                </div>
-                <!-- Portfolio Edit -->
-                <div class="thumb-edit-icons">
-                  <div class="squaredThree">
-                    <input type="checkbox" value="None" id="test_1" name="check" />
-                    <label for="test_1"></label>
-                  </div>
-                  <a href="#"><img src="/static/images/edit/img-pen.png" alt="Edit"></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="project_lists hide" id='tracks_list'>
-            <!-- Portfolio Edit add class="thumb-edit"-->
-            <div class="pl_thumbHolder">
-              <div class="thumb-edit-overlay"></div>
-              <div class="thumbnail">
-                <img src="/static/images/latest/lp3.png" alt="demo1">
-                <div class="caption">
-                  <p>Lorem ipsum diet your text goes here...</p>
-                  <a href="#"><img src="/static/images/header/videos-black.png" alt="videos"></a>
-                </div>
-                <!-- Portfolio Edit -->
-                <div class="thumb-edit-icons">
-                  <div class="squaredThree">
-                    <input type="checkbox" value="None" id="test_1" name="check" />
-                    <label for="test_1"></label>
-                  </div>
-                  <a href="#"><img src="/static/images/edit/img-pen.png" alt="Edit"></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="project_lists hide" id='images_list'>
-            <!-- Portfolio Edit add class="thumb-edit"-->
-            <div class="pl_thumbHolder">
-              <div class="thumb-edit-overlay"></div>
-              <div class="thumbnail">
-                <img src="/static/images/latest/lp4.png" alt="demo1">
-                <div class="caption">
-                  <p>Lorem ipsum diet your text goes here...</p>
-                  <a href="#"><img src="/static/images/header/videos-black.png" alt="videos"></a>
-                </div>
-                <!-- Portfolio Edit -->
-                <div class="thumb-edit-icons">
-                  <div class="squaredThree">
-                    <input type="checkbox" value="None" id="test_1" name="check" />
-                    <label for="test_1"></label>
-                  </div>
-                  <a href="#"><img src="/static/images/edit/img-pen.png" alt="Edit"></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="project_lists hide" id='articles_list'>
-            <!-- Portfolio Edit add class="thumb-edit"-->
-            <div class="pl_thumbHolder">
-              <div class="thumb-edit-overlay"></div>
-              <div class="thumbnail">
-                <img src="/static/images/latest/lp1.png" alt="demo1">
-                <div class="caption">
-                  <p>Lorem ipsum diet your text goes here...</p>
-                  <a href="#"><img src="/static/images/header/videos-black.png" alt="videos"></a>
-                </div>
-                <!-- Portfolio Edit -->
-                <div class="thumb-edit-icons">
-                  <div class="squaredThree">
-                    <input type="checkbox" value="None" id="test_1" name="check" />
-                    <label for="test_1"></label>
-                  </div>
-                  <a href="#"><img src="/static/images/edit/img-pen.png" alt="Edit"></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
 
         </div>
 
@@ -682,8 +620,6 @@
       </div>
     </div>
   </section>
-
-  <script src="/static/js/script.js"></script>
   <script>
   var myVideo=document.getElementById("videoPP"); 
   $('.play-icon, .max-icon, .prev-video, .next-video').click(function(){
