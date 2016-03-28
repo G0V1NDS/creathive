@@ -7,8 +7,8 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from app.home.models import Artist
-from app.home.serializers import ProjectSerializer
+from app.home.models import Artist, Project, Media
+from app.home.serializers import ProjectSerializer, MediaSerializer
 from main.settings.development import PROJECT_ROOT
 
 
@@ -88,6 +88,53 @@ def display(request,id,proj_id):
 def project_delete(request,id,proj_id):
     request.user.artist.project_set.get(id=proj_id).delete()
     return HttpResponse('Deleted')
+
+
+@api_view(['POST','PUT'])
+def media_upload(request,id,proj_id):
+    if request.method == 'POST':
+        project=Project.objects.get(id=proj_id)
+        media=project.media_set.create(project=project)
+        media_id=media.id
+    else:
+        return Http404('Can not access')
+    file = request.FILES.get('media')
+    path=PROJECT_ROOT+'/static/uploads/images/'
+    ext =request.POST.get('ext')
+    media_type=request.POST.get('type')
+    fullname = '{0}{1}_{2}_{3}_{4}_media.{5}'.format(path,id,proj_id,media_id,media_type,ext)
+    handle_uploaded_file(fullname,file)
+    url='/static/uploads/images/{0}_{1}_{2}_{3}_media.{4}'.format(id,proj_id,media_id,media_type,ext)
+    if(media_type=='video'):
+        media.type=1
+    elif(media_type=='audio'):
+        media.type=2
+    elif(media_type=='image'):
+        media.type=3
+    elif(media_type=='article'):
+        media.type=4
+    if media.title == 'NULL':
+        media.title='{0}{1}'.format(media.type,media_id)
+    else:
+        media.title='{0}{1}'.format(media.title,media_id)
+    media.thumbnail=url
+    media.media_url=url
+    media.save()
+    return Response({'id': request.user.artist.id, 'proj_title':project.title, 'proj_id': proj_id, 'media_id': media_id, 'media_thumb_url': media.thumbnail, 'media_url': media.media_url, 'media_title':media.title, 'media_desc':media.description, 'media_type':media_type})
+
+
+@api_view(['GET'])
+def media_get(request,id,proj_id,type):
+    if request.method == 'GET':
+        project=Project.objects.get(id=proj_id)
+        if type == '0':
+            media=project.media_set.all().order_by('-created')[:5]
+        else:
+            media=project.media_set.filter(type=type).order_by('-created')[:5]
+    else:
+        return Http404('Can not access')
+    serialized = MediaSerializer(media,many=True)
+    return Response(serialized.data, status=status.HTTP_200_OK)
 
 @api_view(['POST'])
 def profile_image(request,id):

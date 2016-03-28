@@ -1130,11 +1130,17 @@ body{
 	}
 
 	.edit-projDesc{
+		margin-left: 20px;
+		border-bottom: 1px solid #ddd;
+		padding-bottom: 10px;
+		display: inline-block;
+		vertical-align: top;
+		padding-right: 15px;
+		width: 55%;
 		font-size: 14px;
 		font-family: 'MavenProRegular';
 		color: #666;
 		letter-spacing: 0.3px;
-		padding: 10px 20px;
 	}
 	.edit-projTitle:focus, .edit-projType:focus, .edit-projDesc:focus{
 		outline: none;

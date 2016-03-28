@@ -43,6 +43,10 @@
   a.ytp-youtube-button, .ytp-title-link, .yt-uix-sessionlink{
     display: none !important;
   }
+  [contentEditable=true]:empty:before{
+    content:attr(data-placeholder);
+    color: #cbcbcb;
+  }
   </style>
 </head>
 <body>
@@ -103,7 +107,7 @@
                         <li><a href="#" id="logout">Logout</a></li>
                      </form>
                  </ul>
-             </div>
+              </div>
           </span>
         </div>
       </div>
@@ -138,8 +142,8 @@
       <div class="col-lg-4 col-lg-offset-2 col-md-4 col-offset-md-2 col-sm-10 col-sm-offset-2 col-xs-12">
         <!-- Portfolio Edit -->
         <div class="profile_name">
-          <h3 class="color-000" contentEditable="false">{{ artist.user.get_full_name }}</h3>
-          <p class="color-666 user-obj" contentEditable="false">{{ artist.about_me }}</p>
+          <h3 class="color-000" contentEditable="false" data-placeholder="Enter name here">{{ artist.user.get_full_name }}</h3>
+          <p class="color-666 user-obj" contentEditable="false" data-placeholder="About Me">{{ artist.about_me }}</p>
           <img src="/static/images/edit/pen.png" class="edit-pen hide" alt="edit">
           <img src="/static/images/edit/portfolio.png" class="edit-save hide" alt="save">
         </div>
@@ -312,60 +316,40 @@
                   </a>
                 </div>
                 <div class="media-body">
-                  <h4 class="media-heading edit-projTitle" contentEditable="true">
-                    Title
-                  </h4>
-                  <span contentEditable="true" class="edit-projType">
-                    Project Type
-                  </span>
-                  <p contentEditable="true" class="edit-projDesc">
-                    Project Description
-                  </p>
+                  <span class="media-heading edit-projTitle" contentEditable="true" data-placeholder="Enter Project Title"></span>
+                  <span contentEditable="true" class="edit-projType" data-placeholder="Enter Project Type"></span>
+                  <span contentEditable="true" class="edit-projDesc" data-placeholder="Enter Project Description"></span>
                 </div>
               </div>
+              <div id="proj_info_submit" style="display:none; border:1px dotted; text-align: center; color: #D8000C; background-color: #FFBABA; "  class="error">Project Title Is Required </div>
               <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                   <div class="media-tabs">
+                    <form class="form-inline" id='media_upload_form' style="display: none" enctype="multipart/form-data">
+                      <div class="form-group">
+                        <input type='file' name='media_upload' id='media_upload' style='display:none;'>
+                      </div>
+                    </form>
                     <ul>
                       <li class="icn">
                         <a href="#">
-                          <img src="/static/images/header/videos-black.png" alt="videos">
+                          <img id="video" src="/static/images/header/videos-black.png" alt="videos">
                         </a>
-                        <form class="form-inline" id='video_upload' style="display: none" enctype="multipart/form-data">
-                          <div class="form-group">
-                            <input type='file' name='video_upload' id='video_upload' style='display:none;'>
-                          </div>
-                        </form>
                       </li>
                       <li class="icn">
                         <a href="#">
-                          <img src="/static/images/header/tracks-black.png" alt="Tracks">
+                          <img  id="audio" src="/static/images/header/tracks-black.png" alt="Tracks">
                         </a>
-                        <form class="form-inline" id='audio_upload' style="display: none" enctype="multipart/form-data">
-                          <div class="form-group">
-                            <input type='file' name='audio_upload' id='audio_upload' style='display:none;'>
-                          </div>
-                        </form>
                       </li>
-                      <li class="icn">
+                      <li class="icn" >
                         <a href="#">
-                          <img src="/static/images/header/articles-black.png" alt="Articles">
+                          <img id="article" src="/static/images/header/articles-black.png" alt="Articles">
                         </a>
-                        <form class="form-inline" id='article_upload' style="display: none" enctype="multipart/form-data">
-                          <div class="form-group">
-                            <input type='file' name='article_upload' id='article_upload' style='display:none;'>
-                          </div>
-                        </form>
                       </li>
-                      <li class="icn">
+                      <li class="icn" >
                         <a href="#">
-                          <img src="/static/images/header/images-black.png" alt="Images">
+                          <img id="image" src="/static/images/header/images-black.png" alt="Images">
                         </a>
-                        <form class="form-inline" id='image_upload' style="display: none" enctype="multipart/form-data">
-                          <div class="form-group">
-                            <input type='file' name='image_upload' id='image_upload' style='display:none;'>
-                          </div>
-                        </form>
                       </li>
                     </ul>
                     <p>Click to upload media</p>
@@ -381,26 +365,8 @@
             </div>
           </div>
 
-          <div class="project_lists show" id='project-data'>
+          <div class="project_lists show">
             <!-- Portfolio Edit add class="thumb-edit"-->
-            <div class="pl_thumbHolder">
-              <div class="thumb-edit-overlay"></div>
-              <div class="thumbnail">
-                <img src="/static/images/latest/lp1.png" alt="demo1">
-                <div class="caption">
-                  <p>Lorem ipsum diet your text goes here...</p>
-                  <a href="#"><img src="/static/images/header/videos-black.png" alt="videos"></a>
-                </div>
-                <!-- Portfolio Edit -->
-                <div class="thumb-edit-icons">
-                  <div class="squaredThree">
-                    <input type="checkbox" value="None" id="test_1" name="check" />
-                    <label for="test_1"></label>
-                  </div>
-                  <a href="#"><img src="/static/images/edit/img-pen.png" alt="Edit"></a>
-                </div>
-              </div>
-            </div>
           </div>
 
         </div>
@@ -410,8 +376,7 @@
           <span>3</span> images and <span>5</span> videos selected
           <button class="btn btn-black">DELETE</button>
         </div>
-
-        </div>
+      </div>
         <div class="video-modal">
           <div class="gallery-header">
             <h4>Add a project title</h4>
@@ -426,7 +391,7 @@
                     <source src='/static/images/mango.mp4' type="video/mp4"><source src='/static/images/mango.webm' type="video/webm"><source src='/static/images/mango.ogg' type="video/ogg">
                       <p>Please use a modern browser to view this video.</p>
                     </video> -->
-                  <iframe width="100%" height="100%" scrolling="no" title="YouTube video player" src="//www.youtube.com/embed/ni-1ielKlsk?showinfo=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;nologo=1&amp;controls=2&amp;rel=0&amp;autohide=1&amp;wmode=transparent&amp;enablejsapi=1&amp;html5=1&amp;" frameborder="0" allowfullscreen=""></iframe>
+                  <iframe width="100%" height="100%" scrolling="no" title="YouTube video player" src="" frameborder="0" allowfullscreen=""></iframe>
                 </div>
                 <div class="loader-display hide">
                   <div class="upload-progress-bar">
@@ -441,7 +406,6 @@
                   </div>
                 </div>
               </div>
-
             </div>
             <div class="video-thumbnails large">
               <ul>
@@ -487,7 +451,6 @@
           <div class="video-modal-right">
             <div class="video-viewer small">
               <img src="/static/images/banner2.png" alt="video">
-              <span class="video-duration">10:51:09</span>
             </div>
             <div class="video-thumbnails small">
               <ul>
@@ -524,12 +487,10 @@
               </ul>
             </div>
             <div class="video-desc">
-              <h4>Video Details</h4>
-              <h5>Video title pulled from youtube</h5>
-              <a href="#">https://www.youtube.com/watch?v=brME5ZgKbUo</a>
-              <h5>Lorem ipsum diet your text goes here</h5>
+              <h4 contentEditable="false" data-placeholder="Enter Media Details">Media Details</h4>
+              <h5 contentEditable="false" data-placeholder="Enter Media Description">Media Title</h5>
               <hr>
-              <p>Lorem ipsum diet your text goes here your text goes here your text goes here </p>
+              <p>Video description</p>
             </div>
           </div>
           <div class="gallery-footer">
@@ -537,7 +498,6 @@
             <button class="btn btn-black btn-done">DONE</button>
           </div>
         </div>
-      </div>
     </div>
   </section>
 
@@ -624,7 +584,7 @@
   var myVideo=document.getElementById("videoPP"); 
   $('.play-icon, .max-icon, .prev-video, .next-video').click(function(){
     event.preventDefault();
-  })
+  });
   function playPause()
   { 
     if (myVideo.paused) {

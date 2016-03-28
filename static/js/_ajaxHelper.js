@@ -1,5 +1,5 @@
 var ajaxHandle ={
-    upload_pic: function(url,method,data,callback){
+    upload_file: function(url,method,data,callback){
         var ajax_data={
             'data':data,
             'url': url,

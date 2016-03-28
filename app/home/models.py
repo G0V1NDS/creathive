@@ -38,18 +38,18 @@ admin.site.register(Project)
 
 class Media(models.Model):
     project = models.ForeignKey(Project,on_delete=models.CASCADE)
-    title = models.TextField()
-    description = models.TextField(null=True, blank=True)
+    title = models.TextField(default='Media Title')
+    description = models.TextField(null=True, blank=True, default='Media Description')
     thumbnail = models.URLField(default='/static/images/thumb.png')
     VIDEO = '1'
     AUDIO = '2'
     IMAGE = '3'
     ARTICLE ='4'
     MEDIA_TYPE = (
-        (VIDEO, 'Video'),
-        (AUDIO, 'Audio'),
-        (IMAGE, 'Image'),
-        (ARTICLE, 'Article')
+        (VIDEO, 'video'),
+        (AUDIO, 'audio'),
+        (IMAGE, 'image'),
+        (ARTICLE, 'article')
     )
     type = models.CharField(max_length=2, choices=MEDIA_TYPE, null=True)
     media_url = models.URLField(null=True)
@@ -60,6 +60,7 @@ class Media(models.Model):
 
     def get_default_description(self):
         return "Sample Media Description{0}".format(self.id)
+
 
     def __unicode__(self):
         return self.title
