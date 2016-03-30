@@ -334,15 +334,18 @@ body{
 		display: block;
 	}
 	.titleSection span.p_mt{
+		word-break: break-all;
 		font-size: 24px;
 		font-family: 'MavenProMedium';
 		color: #000;
 		text-transform: uppercase;
 	}
 	.titleSection, .descSection{
+		word-break: break-all;
 		display: inline-block;
 	}
 	.titleSection span.p_st{
+		word-break: break-all;
 		font-size: 14px;
 		font-family: 'MavenProRegular';
 		color: #666;
@@ -398,6 +401,9 @@ body{
 	}
 	.pl_thumbHolder:hover .thumbnail .caption a img{
 		opacity: 1;
+	}
+	.pl_thumbHolder:hover .thumb-edit-icons{
+		display: block !important;
 	}
 	/*Footer*/
 	#footer{
@@ -988,11 +994,39 @@ body{
 		cursor: pointer;
 	}
 	.edit-proj{
+		margin-top: 20px;
 		position: absolute;
 		top: 70px;
 		right: 35px;
 		cursor: pointer;
 	}
+	.edit-mid{
+		position: absolute;
+		top: 70px;
+		right: 35px;
+		cursor: pointer;
+	}
+	
+	.remove-media{
+		display: none;
+	}
+	.remove-mid{
+		position: absolute;
+		top: auto;
+		right: 95px;
+		cursor: pointer;
+	}
+	.cancel-remove-mid{
+		top: auto;
+		position: absolute;
+		right: 55px;
+		cursor: pointer;
+	}
+	.description{
+		white-space: nowrap;
+		overflow: hidden;
+	}
+
 	.profile_emailId {
 		border-right: 1px solid #ddd;
 	}
@@ -1104,6 +1138,7 @@ body{
 		width: 73%;
 	}
 	.edit-projTitle{
+		word-break: break-all;
 		margin-left: 20px;
 		font-size: 24px;
 		font-family: 'MavenProMedium';
@@ -1117,7 +1152,7 @@ body{
 		width: 55%;
 	}
 	.edit-projType{
-		/*float: right;*/
+		word-break: break-all;
 		display: inline-block;
 		border-bottom: 1px solid #ddd;
 		padding-bottom: 10px;
@@ -1130,6 +1165,7 @@ body{
 	}
 
 	.edit-projDesc{
+		word-break: break-all;
 		margin-left: 20px;
 		border-bottom: 1px solid #ddd;
 		padding-bottom: 10px;
@@ -1726,3 +1762,28 @@ body{
 				height: 422px;
 			}
 		}
+	.edit-midTitle{
+		word-break: break-all;
+		font-size: 20px;
+		font-family: 'MavenProMedium';
+		color: #000;
+		text-transform: uppercase;
+		padding-bottom: 10px;
+		display: inline-block;
+		vertical-align: top;
+		padding-right: 15px;
+		width: 100%;
+	}
+
+	.edit-midDesc{
+		word-break: break-all;
+		padding-bottom: 10px;
+		display: inline-block;
+		vertical-align: top;
+		padding-right: 15px;
+		width: 100%;
+		font-size: 14px;
+		font-family: 'MavenProRegular';
+		color: #666;
+		letter-spacing: 0.3px;
+	}

@@ -90,7 +90,7 @@ def project_delete(request,id,proj_id):
     return HttpResponse('Deleted')
 
 
-@api_view(['POST','PUT'])
+@api_view(['POST'])
 def media_upload(request,id,proj_id):
     if request.method == 'POST':
         project=Project.objects.get(id=proj_id)
@@ -123,18 +123,38 @@ def media_upload(request,id,proj_id):
     return Response({'id': request.user.artist.id, 'proj_title':project.title, 'proj_id': proj_id, 'media_id': media_id, 'media_thumb_url': media.thumbnail, 'media_url': media.media_url, 'media_title':media.title, 'media_desc':media.description, 'media_type':media_type})
 
 
+@api_view(['PUT'])
+def media_update(request,id,proj_id):
+    if request.method == 'PUT':
+        project=Project.objects.get(id=proj_id)
+        media=project.media_set.get(id=request.data.get('media_id'))
+    else:
+        return Http404('Can not access')
+    media.title=request.data.get('title')
+    media.description=request.data.get('description')
+    media.save()
+    return Response({'media_title':media.title, 'media_desc':media.description})
+
 @api_view(['GET'])
 def media_get(request,id,proj_id,type):
     if request.method == 'GET':
         project=Project.objects.get(id=proj_id)
         if type == '0':
-            media=project.media_set.all().order_by('-created')[:5]
+            media=project.media_set.all().order_by('-created')[:10]
         else:
-            media=project.media_set.filter(type=type).order_by('-created')[:5]
+            media=project.media_set.filter(type=type).order_by('-created')[:10]
     else:
         return Http404('Can not access')
     serialized = MediaSerializer(media,many=True)
     return Response(serialized.data, status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def media_delete(request,id,proj_id):
+    rem_mid=request.data.get('rem_mid')
+    for id in rem_mid:
+        Media.objects.get(id=id).delete()
+    return HttpResponse('Deleted')
+
 
 @api_view(['POST'])
 def profile_image(request,id):

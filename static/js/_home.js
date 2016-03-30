@@ -32,7 +32,7 @@ $(function(){
         var classname = $(this).attr('class').split(' ')[0];
         $('.'+classname).addClass('active');
         $('.project_lists').removeClass('hide').addClass('show');
-        var proj_id=$('#rightView_content').find('[data-proj-id]').attr('data-proj-id');
+        var proj_id=$('#rightView_content').find('.show[data-proj-id]').first().attr('data-proj-id');
         var media_type;
         switch(classname)
         {
@@ -126,8 +126,8 @@ $(function(){
 		$(this).addClass('hide').removeClass('show');
 		var userinfo=$('.profile_name');
 		var data={
-			'name':userinfo.find('h3').text(),
-			'about_me':userinfo.find('p').text()
+			'name':userinfo.find('h3').text().trim(),
+			'about_me':userinfo.find('p').text().trim()
 		};
 		ajaxHandle.ajax_req('update_user_info/','POST',data,function(res){
 
@@ -240,15 +240,15 @@ $(function(){
     Project title type and description update
      */
     $('.edit-projTitle, .edit-projType, .edit-projDesc').on('blur',function(){
-        $('#proj_info_submit').hide();
-        var title=$('.edit-projTitle').text().trim();
+        submit_error=$('#proj_info_submit');
+        submit_error.hide();
+        var title=$('.edit-projTitle').text().trim().toUpperCase();
         var type=$('.edit-projType').text().trim();
         var description=$('.edit-projDesc').text().trim();
         $('.pH_row-edit span').css('border-color','#ddd');
-        console.log(title);
         if(title=="")
         {
-            $('#proj_info_submit').fadeIn("slow");
+            submit_error.fadeIn("slow");
         }
         else {
             var data = {
@@ -326,9 +326,9 @@ $(function(){
         var proj_id=project_view.attr('data-proj-id');
         project_edit.attr('data-proj-id',project_view.attr('data-proj-id'));
         $('.media-object').attr('src',$('.left-panel-scroll>ul').find('[data-proj-id='+proj_id+']').find('img').first().attr('src'));
-        $('.edit-projTitle').text(project_view.find('.p_mt').text());
-        $('.edit-projType').text(project_view.find('.p_st').text());
-        $('.edit-projDesc').text(project_view.find('p').text());
+        $('.edit-projTitle').text(project_view.find('.p_mt').text().trim());
+        $('.edit-projType').text(project_view.find('.p_st').text().trim());
+        $('.edit-projDesc').text(project_view.find('p').text().trim());
     });
     /*
     project view and deletion
@@ -348,6 +348,7 @@ $(function(){
         }
         else
         {
+            reset_remove_media();
             load_project(proj_id);
         }
     });
@@ -372,6 +373,7 @@ $(function(){
         ajaxHandle.ajax_req(url,'GET',proj_id,function(res){
             $('.project_lists').html('');
             var i=0;
+            if(res!=undefined)
             for(i=0;i<res.length;i++){
                 data=res[i];
                 $('.project_lists').append(newMediaThumb(data.id,data.title,data.description,data.type,data.media_url,data.thumbnail));
@@ -467,20 +469,41 @@ $(function(){
                     return;
                 }
         }
-        $('.video-modal').fadeIn();
+        var modal=$('.video-modal');
+        modal.fadeIn();
+        edit_media();
         var proj_id=$('.pH_row-edit').attr('data-proj-id');
         var url=proj_id+'/media_upload/';
         ajaxHandle.upload_file(url,'POST',data,function(res){
+            modal.attr('data-media-id',res.media_id);
             $('.gallery-header').find('h4').text(res.proj_title);
             $('.mediaplayer').find('iframe').attr('src',res.media_url);
-            $('.video-viewer .small img').attr('src',res.media_thumb_url);
-            var video_desc=$('.video-desc');
-            video_desc.find('h5').text(res.media_title);
-            video_desc.find('p').text(res.media_desc);
-            console.log(res);
+            $('.edit-midTitle').text(res.media_title);
+            $('.edit-midDesc').text(res.media_desc);
             $('.project_lists').prepend(newMediaThumb(res.media_id,res.media_title,res.media_desc,res.media_type,res.media_url,res.media_thumb_url));
         });
     });
+    //Function for editable media
+    function edit_media(){
+        $('.edit-mid').removeClass('show').addClass('hide');
+        $('.video-desc').find('[contenteditable]').attr('contenteditable',true);
+        $('.edit-midTitle').focus();
+    }
+    //Function to update media title and description
+    function update_media(){
+        var data={
+            'title': $('.edit-midTitle').text().trim().toUpperCase(),
+            'description': $('.edit-midDesc').text().trim(),
+            'media_id': $('.video-modal').attr('data-media-id')
+        };
+        var proj_id=$('#rightView_content').find('.show[data-proj-id]').first().attr('data-proj-id');
+        var url=proj_id+'/media_update/';
+        ajaxHandle.ajax_req(url,'PUT',data,function(res){
+            editable_media=$('.project_lists').find('[id='+data.media_id+']');
+            editable_media.find('.title').text(res.media_title);
+            editable_media.find('.description').text(res.media_desc);
+        });
+    }
     //To create new media thumbnail
     function newMediaThumb(id,title,description,type,media_url,thumbnail){
         return '' +
@@ -496,31 +519,77 @@ $(function(){
                 '</div>' +
                 '<div class="thumb-edit-icons">' +
                 '<div class="squaredThree">' +
-                '<input type="checkbox" value="None" id="test_1" name="check" />' +
-                '<label for="test_1"></label>' +
+                '<input class="mid_label" type="checkbox" value="'+id+'" id="mid_'+id+'" name="check" />' +
+                '<label class="mid_label" for="mid_'+id+'"></label>' +
                 '</div>' +
-                '<a href="#"><img src="/static/images/edit/img-pen.png" alt="Edit"></a>' +
                 '</div>' +
                 '</div>' +
                 '</div>';
     }
-    $('.project_lists').on('click','.pl_thumbHolder',function(){
+    $('.project_lists').on('click','.pl_thumbHolder',function(e){
+        e.preventDefault();
         selected_media=$(this);
-        var proj_id=$('#rightView_content').find('[data-proj-id]').attr('data-proj-id');
-        $('.gallery-header').find('h4').text($('.left-panel-scroll>ul').find('[data-proj-id='+proj_id+']').find('span').text());
-        $('.mediaplayer').find('iframe').attr('src',selected_media.find($('.media_url')).html());
-        $('.video-viewer .small img').attr('src',selected_media.find('img').first().attr('src'));
-        var video_desc=$('.video-desc');
-        video_desc.find('h5').text(selected_media.find($('.title')).html());
-        video_desc.find('p').text(selected_media.find($('.description')).html());
+        var proj_id=$('#rightView_content').find('.show[data-proj-id]').first().attr('data-proj-id');
+        var modal=$('.video-modal');
+        modal.attr('data-media-id',$(this).attr('id'));
+        $('.gallery-header').find('h4').text($('.left-panel-scroll>ul').find('[data-proj-id='+proj_id+']').find('span').text().trim());
+        $('.mediaplayer').find('iframe').attr('src',selected_media.find($('.media_url')).text().trim());
+        $('.edit-midTitle').text(selected_media.find($('.title')).text().trim());
+        $('.edit-midDesc').text(selected_media.find($('.description')).text().trim());
 		$('body').css('overflow', 'hidden');
-		$('.video-modal').fadeIn();
+		modal.fadeIn();
 		$('.body-overlay').fadeIn();
+        e.stopPropagation();
 	});
+    $('.edit-midTitle,.edit-midDesc').on('blur',function(e){
+        if($('.edit-midTitle').text()=="" || $('.edit-midDesc').text()==""){
+            $('#mid_info_submit').fadeIn('slow');
+        }
+        else{
+            $('#mid_info_submit').fadeOut('slow');
+            update_media();
+        }
+    });
+    $('.edit-mid').on('click',function(e){
+       edit_media();
+    });
 	$('.btn-done').on('click',function(){
 		$('body').css('overflow', 'visible');
+        $('.video-desc').find('[contenteditable]').attr('contenteditable',false);
+        $('.edit-mid').removeClass('hide').addClass('show');
 		$('.video-modal').fadeOut();
 		$('.body-overlay').fadeOut();
 	});
-
+    /*
+        To delete media
+     */
+    $('.project_lists.show').on('click', '.mid_label', function(e){
+        $('.thumb-edit-icons').css('display','block');
+        $('.remove-media').show();
+        e.stopPropagation();
+    });
+    $('.remove-mid').on('click',function(){
+        var rem_mid=[];
+        $('.mid_label:checked').each(function(){
+            mid_thumb=$(this).closest('.pl_thumbHolder');
+            rem_mid.push(mid_thumb.attr('id'));
+            mid_thumb.remove();
+        });
+        var data={rem_mid:rem_mid};
+        var proj_id=$('#rightView_content').find('.show[data-proj-id]').first().attr('data-proj-id');
+        var url = proj_id + '/media_delete/';
+        ajaxHandle.ajax_req(url, 'POST',data, function (res) {
+            reset_remove_media();
+        });
+    });
+    $('.cancel-remove-mid').on('click',function(){
+        reset_remove_media();
+    });
+    function reset_remove_media(){
+        $('.thumb-edit-icons').css('display','none');
+        $('.remove-media').hide();
+        $('.mid_label:checked').each(function(){
+           $(this).prop('checked',false);
+        });
+    }
 });

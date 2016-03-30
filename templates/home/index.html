@@ -25,8 +25,8 @@
   <script src="/static/js/jquery.sticky.js" type="text/javascript"></script>
   <script src="/static/js/jquery.nicescroll.min.js"></script>
   <script src="/static/js/owl.carousel.js" type="text/javascript"></script>
-  <script src="/static/js/_home.js"></script>
   <script src="/static/js/jquery.validate.min.js"></script>
+  <script src="/static/js/_home.js"></script>
   <script type="text/javascript" src="/static/js/_accounts.js"></script>
   <script type="text/javascript" src="/static/js/_ajaxHelper.js"></script>
 {#  <script type="text/javascript" src="/static/js/script.js"></script>#}
@@ -76,7 +76,7 @@
             </li>
             <li>
               <a class='tracks tabs'>
-                <img src="/static/images/header/tracks.png" alt="tracks">
+                <img src="/static/images/header/audios.png" alt="tracks">
                 <div>Tracks</div>
               </a>
             </li>
@@ -142,7 +142,7 @@
       <div class="col-lg-4 col-lg-offset-2 col-md-4 col-offset-md-2 col-sm-10 col-sm-offset-2 col-xs-12">
         <!-- Portfolio Edit -->
         <div class="profile_name">
-          <h3 class="color-000" contentEditable="false" data-placeholder="Enter name here">{{ artist.user.get_full_name }}</h3>
+          <h3 class="color-000" contentEditable="false" data-placeholder="Name here">{{ artist.user.get_full_name }}</h3>
           <p class="color-666 user-obj" contentEditable="false" data-placeholder="About Me">{{ artist.about_me }}</p>
           <img src="/static/images/edit/pen.png" class="edit-pen hide" alt="edit">
           <img src="/static/images/edit/portfolio.png" class="edit-save hide" alt="save">
@@ -273,7 +273,7 @@
             </li>
             <li class='tracks tabs'>
               <a style='cursor:pointer'>
-                <img src="/static/images/header/tracks-black.png" alt="tracks">
+                <img src="/static/images/header/audios-black.png" alt="tracks">
                 <span>Tracks</span>
               </a>
             </li>
@@ -316,9 +316,9 @@
                   </a>
                 </div>
                 <div class="media-body">
-                  <span class="media-heading edit-projTitle" contentEditable="true" data-placeholder="Enter Project Title"></span>
-                  <span contentEditable="true" class="edit-projType" data-placeholder="Enter Project Type"></span>
-                  <span contentEditable="true" class="edit-projDesc" data-placeholder="Enter Project Description"></span>
+                  <span class="media-heading edit-projTitle" contentEditable="true" data-placeholder="Project Title"></span>
+                  <span contentEditable="true" class="edit-projType" data-placeholder="Project Type"></span>
+                  <span contentEditable="true" class="edit-projDesc" data-placeholder="Project Description"></span>
                 </div>
               </div>
               <div id="proj_info_submit" style="display:none; border:1px dotted; text-align: center; color: #D8000C; background-color: #FFBABA; "  class="error">Project Title Is Required </div>
@@ -338,7 +338,7 @@
                       </li>
                       <li class="icn">
                         <a href="#">
-                          <img  id="audio" src="/static/images/header/tracks-black.png" alt="Tracks">
+                          <img  id="audio" src="/static/images/header/audios-black.png" alt="Tracks">
                         </a>
                       </li>
                       <li class="icn" >
@@ -364,7 +364,9 @@
               </div>
             </div>
           </div>
-
+          <hr>
+          <img src="/static/images/edit/trash.png" class="remove-mid remove-media" alt="edit">
+          <img src="/static/images/edit/close.png" class="cancel-remove-mid remove-media" alt="save">
           <div class="project_lists show">
             <!-- Portfolio Edit add class="thumb-edit"-->
           </div>
@@ -377,7 +379,7 @@
           <button class="btn btn-black">DELETE</button>
         </div>
       </div>
-        <div class="video-modal">
+        <div class="video-modal" data-media-id="0">
           <div class="gallery-header">
             <h4>Add a project title</h4>
             <span class="viewer-close">2 | 4</span>
@@ -420,78 +422,17 @@
                     <img src="/static/images/latest/project1.png" alt="">
                   </a>
                 </li>
-                <li>
-                  <a href="#">
-                    <img src="/static/images/latest/project1.png" alt="">
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <img src="/static/images/latest/project1.png" alt="">
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <img src="/static/images/latest/project1.png" alt="">
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <img src="/static/images/latest/project1.png" alt="">
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <img src="/static/images/latest/project1.png" alt="">
-                  </a>
-                </li>
               </ul>
             </div>
           </div>
           <div class="video-modal-right">
-            <div class="video-viewer small">
-              <img src="/static/images/banner2.png" alt="video">
-            </div>
-            <div class="video-thumbnails small">
-              <ul>
-                <li>
-                  <a href="#" class="active">
-                    <img src="/static/images/latest/project1.png" alt="">
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <img src="/static/images/latest/project1.png" alt="">
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <img src="/static/images/latest/project1.png" alt="">
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <img src="/static/images/latest/project1.png" alt="">
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <img src="/static/images/latest/project1.png" alt="">
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <img src="/static/images/latest/project1.png" alt="">
-                  </a>
-                </li>
-              </ul>
-            </div>
             <div class="video-desc">
-              <h4 contentEditable="false" data-placeholder="Enter Media Details">Media Details</h4>
-              <h5 contentEditable="false" data-placeholder="Enter Media Description">Media Title</h5>
-              <hr>
-              <p>Video description</p>
+              <img src="/static/images/edit/pen.png" class="edit-mid show" alt="edit">
+              <h4>Media Details</h4>
+              <span contentEditable="false" class="edit-midTitle" data-placeholder="Media Title"></span>
+              <span contentEditable="false" class="edit-midDesc" data-placeholder="Media Description"></span>
             </div>
+            <div id="mid_info_submit" style="display:none; border:1px dotted; text-align: center; color: #D8000C; background-color: #FFBABA; "  class="error">Media Title & Description Is Required </div>
           </div>
           <div class="gallery-footer">
             <button class="btn btn-share">SHARE</button>
