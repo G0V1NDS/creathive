@@ -38,8 +38,8 @@ admin.site.register(Project)
 
 class Media(models.Model):
     project = models.ForeignKey(Project,on_delete=models.CASCADE)
-    title = models.TextField(default='Media Title')
-    description = models.TextField(null=True, blank=True, default='Media Description')
+    title = models.TextField()
+    description = models.TextField(null=True, blank=True)
     thumbnail = models.URLField(default='/static/images/thumb.png')
     VIDEO = '1'
     AUDIO = '2'

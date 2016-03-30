@@ -73,6 +73,7 @@ body{
 
 }
 .header-midMenu ul li a{
+	cursor: pointer;
 	color: #b5b5b5;
 	padding: 5px 20px 10px;
 	display: inline-block;
@@ -289,6 +290,7 @@ body{
 	}
 	.nav-categories li a{
 		display: inline-block;
+		cursor: pointer;
 		color: #000;
 		opacity: 0.8;
 		text-align: center;

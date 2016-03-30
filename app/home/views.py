@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+import json
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render
 from django.utils import timezone
@@ -79,8 +80,10 @@ def project_update(request,id,proj_id):
 def display(request,id,proj_id):
     if request.method =='GET':
         project=request.user.artist.project_set.get(id=proj_id)
+        count=project.media_set.all().count()
         serialized = ProjectSerializer(project)
-        return Response(serialized.data, status=status.HTTP_200_OK)
+        data={'serial':serialized.data,'media_count':count}
+        return Response({json.dumps(data)}, status=status.HTTP_200_OK)
     else:
         return Http404('Can not access')
 
@@ -110,6 +113,7 @@ def media_upload(request,id,proj_id):
     elif(media_type=='audio'):
         media.type=2
     elif(media_type=='image'):
+        media.thumbnail=url
         media.type=3
     elif(media_type=='article'):
         media.type=4
@@ -117,10 +121,12 @@ def media_upload(request,id,proj_id):
         media.title='{0}{1}'.format(media.type,media_id)
     else:
         media.title='{0}{1}'.format(media.title,media_id)
-    media.thumbnail=url
     media.media_url=url
     media.save()
-    return Response({'id': request.user.artist.id, 'proj_title':project.title, 'proj_id': proj_id, 'media_id': media_id, 'media_thumb_url': media.thumbnail, 'media_url': media.media_url, 'media_title':media.title, 'media_desc':media.description, 'media_type':media_type})
+    media=Media.objects.get(id=media.id)
+    serialized=MediaSerializer(media)
+    data={'serial':serialized.data,'proj_id':proj_id,'id': request.user.artist.id,'proj_title':project.title}
+    return Response({json.dumps(data)})
 
 
 @api_view(['PUT'])
@@ -136,17 +142,19 @@ def media_update(request,id,proj_id):
     return Response({'media_title':media.title, 'media_desc':media.description})
 
 @api_view(['GET'])
-def media_get(request,id,proj_id,type):
+def media_get(request,id,proj_id,type,offset,limit):
     if request.method == 'GET':
         project=Project.objects.get(id=proj_id)
         if type == '0':
-            media=project.media_set.all().order_by('-created')[:10]
+            media=project.media_set.all().order_by('-created')[offset:limit]
         else:
-            media=project.media_set.filter(type=type).order_by('-created')[:10]
+            media=project.media_set.filter(type=type).order_by('-created')[offset:limit]
+        count=media.count()
     else:
         return Http404('Can not access')
     serialized = MediaSerializer(media,many=True)
-    return Response(serialized.data, status=status.HTTP_200_OK)
+    data={'serial':serialized.data,'loaded_media':count}
+    return Response({json.dumps(data)}, status=status.HTTP_200_OK)
 
 @api_view(['POST'])
 def media_delete(request,id,proj_id):
