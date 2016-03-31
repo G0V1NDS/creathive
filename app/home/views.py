@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 import json
+import subprocess
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render
 from django.utils import timezone
@@ -106,16 +107,28 @@ def media_upload(request,id,proj_id):
     ext =request.POST.get('ext')
     media_type=request.POST.get('type')
     fullname = '{0}{1}_{2}_{3}_{4}_media.{5}'.format(path,id,proj_id,media_id,media_type,ext)
+    thumbnail='{0}{1}_{2}_{3}_{4}_media.png'.format(path,id,proj_id,media_id,media_type)
     handle_uploaded_file(fullname,file)
     url='/static/uploads/images/{0}_{1}_{2}_{3}_media.{4}'.format(id,proj_id,media_id,media_type,ext)
+    thumb_url='/static/uploads/images/{0}_{1}_{2}_{3}_media.png'.format(id,proj_id,media_id,media_type)
     if(media_type=='video'):
+        subprocess.call('ffmpeg -i {0} -ss 00:00:14.435 -filter  scale=w=260:h=213 -vframes 1 {1}'.format(fullname,thumbnail),shell=True)
+        media.thumbnail=thumb_url
         media.type=1
     elif(media_type=='audio'):
+        value= subprocess.call('ffmpeg -i {0} -filter scale=w=260:h=213 {1}'.format(fullname,thumbnail),shell=True)
+        if value==0:
+            media.thumbnail=thumb_url
+        else:
+            media.thumbnail='/static/uploads/audios/audio.png'
         media.type=2
     elif(media_type=='image'):
-        media.thumbnail=url
+        subprocess.call('ffmpeg -i {0} -filter scale=w=260:h=213 {1}'.format(fullname,thumbnail),shell=True)
+        media.thumbnail=thumb_url
         media.type=3
     elif(media_type=='article'):
+        subprocess.call('convert -resize 260x213\! {0}[0] {1}'.format(fullname,thumbnail),shell=True)
+        media.thumbnail=thumb_url
         media.type=4
     if media.title == 'NULL':
         media.title='{0}{1}'.format(media.type,media_id)

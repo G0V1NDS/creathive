@@ -398,7 +398,7 @@
                 <div class="loader-display hide">
                   <div class="upload-progress-bar">
                     <div class="progress">
-                      <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                      <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%; display:none;">
                       </div>
                     </div>
                   </div>
@@ -414,7 +414,7 @@
                 <li>
                   <div class="thumb-progress-bar">
                     <div class="progress">
-                      <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                      <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%; display:none;">
                       </div>
                     </div>
                   </div>
@@ -521,22 +521,5 @@
       </div>
     </div>
   </section>
-  <script>
-  var myVideo=document.getElementById("videoPP"); 
-  $('.play-icon, .max-icon, .prev-video, .next-video').click(function(){
-    event.preventDefault();
-  });
-  function playPause()
-  { 
-    if (myVideo.paused) {
-      myVideo.play(); 
-      $('.play-icon').hide();
-    }
-    else {
-      myVideo.pause(); 
-      $('.play-icon').show();
-    }
-  }
-  </script>
 </body>
 </html>

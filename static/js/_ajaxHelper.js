@@ -1,5 +1,5 @@
 var ajaxHandle ={
-    upload_file: function(url,method,data,callback){
+    upload_file: function(url,method,data,callback,progressbar){
         var ajax_data={
             'data':data,
             'url': url,
@@ -9,18 +9,23 @@ var ajaxHandle ={
             'xhr': function() {
                 var xhr = $.ajaxSettings.xhr();
                 if (xhr.upload) {
-                    xhr.upload.addEventListener('progress', function(evt) {
-                        var percent = (evt.loaded / evt.total) * 100;
-                        console.log(percent)
-                    }, false);
+                    if(progressbar != undefined) {
+                        progressbar.show();
+                        progressbar.width(0);
+                        xhr.upload.addEventListener('progress', function (evt) {
+                            var percent = (evt.loaded / evt.total) * 100;
+                            progressbar.width(percent + '%');
+                        }, false);
+                        progressbar.hide();
+                    }
                 }
                 return xhr;
             },
             'success': function(res) {
-                    callback(res)
+                callback(res)
             },
             'error':function(res){
-                    callback(res.responseJSON)
+                callback(res.responseJSON)
             }
         };
         var csrf_token = ajaxHandle.getCookie('csrftoken');
