@@ -181,7 +181,6 @@ def media_delete(request,id,proj_id):
 def profile_image(request,id):
     if request.method == 'POST':
         image = request.FILES.get('image')
-        os
         path=PROJECT_ROOT+'/static/uploads/images/'
         ext =request.POST.get('ext')
         fullname = path+id+'_profile_pic.'+ext
