@@ -1502,14 +1502,13 @@ body{
 		background-color: #000;
 		overflow: hidden;
 	}
-	/*.mediaplayer video{
+	.mediaplayer audio{
 		position: absolute;
-		width: 700px;
-		left: 0px;
-		top: 0px;
+		margin :  30% 10% 0% 10%;
+		width: 80%;
 		transform: none;
 		opacity: 1;
-		}*/
+	}
 		.video-viewer img{
 			width: 100%;
 		}
@@ -1602,6 +1601,7 @@ body{
 		}
 		.prev-video, .next-video{
 			position: absolute;
+			cursor: pointer	;
 			top: 50%;
 		}
 		.prev-video img, .next-video img{
