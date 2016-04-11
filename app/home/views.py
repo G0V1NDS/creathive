@@ -1,4 +1,5 @@
 import os
+import re
 import shutil
 
 from django.contrib.auth.decorators import login_required
@@ -162,6 +163,35 @@ def media_upload(request,id,proj_id):
     return Response(serialized.data)
 
 
+@api_view(['POST'])
+def youtube_upload(request,id,proj_id):
+    if request.method == 'POST':
+        project=Project.objects.get(id=proj_id)
+        media=project.media_set.create(project=project)
+        media_id=media.id
+    else:
+        return Http404('Can not access')
+    media_type='video'
+    abspath='/static/uploads/profile_{0}/project_{1}/{2}s'.format(id,proj_id,media_type)
+    path='{0}{1}'.format(PROJECT_ROOT,abspath)
+    fullname = request.data.get('url')
+    actual_thumbnail = request.data.get('thumbnail')
+    thumbnail='{0}/media_{1}_thumb.png'.format(path,media_id)
+    absthumbnail='{0}/media_{1}_thumb.png'.format(abspath,media_id)
+
+    subprocess.call('ffmpeg -i {0} -filter scale=w=260:h=213 {1}'.format(actual_thumbnail,thumbnail),shell=True)
+
+    media.type=1
+    media.thumbnail=absthumbnail
+    media.media_url=fullname
+    media.title=request.data.get('title')
+    media.description=request.data.get('description')
+    media.save()
+    media=Media.objects.get(id=media.id)
+    serialized=MediaSerializer(media)
+    return Response(serialized.data)
+
+
 @api_view(['PUT'])
 def media_update(request,id,proj_id):
     if request.method == 'PUT':
@@ -196,8 +226,11 @@ def media_delete(request,id,proj_id):
     rem_mid=request.data.get('rem_mid')
     for media_id in rem_mid:
         media=Media.objects.get(id=media_id)
+        if 'you' in media.media_url:
+            print 'youtube video'
+        else:
+            os.remove(PROJECT_ROOT+media.media_url)
         os.remove(PROJECT_ROOT+media.thumbnail)
-        os.remove(PROJECT_ROOT+media.media_url)
         media.delete()
     return HttpResponse('Deleted')
 

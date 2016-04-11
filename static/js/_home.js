@@ -600,7 +600,7 @@ $(function(){
         ele.attr('src',media_url);
         ele.addClass('show').removeClass('hide');
         $('.edit-midTitle').text(midTitle);
-        $('.edit-midDesc').text();
+        $('.edit-midDesc').text(midDesc);
 		$('body').css('overflow', 'hidden');
         add_large_thumbnail_to_modal(media_id,thumb_url);
 
@@ -611,13 +611,14 @@ $(function(){
         var prev=selected_media.prev();
         if(prev.length==0)
             $('.prev-video').hide();
+        else
+            $('.prev-video').show();
         for(i=0;i<2;i++){
             if(prev.length==0) {
                 add_large_thumbnail_to_modal(0,thumb_url,'prepend','hidden');
             }
             else
             {
-                $('.prev-video').show();
                 thumb_url = prev.find($('.thumbnail img')).attr('src');
                 add_large_thumbnail_to_modal(prev.attr('id'), thumb_url);
             }
@@ -626,9 +627,10 @@ $(function(){
         var next=selected_media.next();
         if(next.length==0)
             $('.next-video').hide();
+        else
+            $('.next-video').show();
         var existing_thumbs=media_thumbs_list.children().length;
         for(i=0;i<5-existing_thumbs && next.length!=0;i++){
-            $('.next-video').show();
             thumb_url = next.find($('.thumbnail img')).attr('src');
             add_large_thumbnail_to_modal(next.attr('id'), thumb_url, 'append');
             next = next.next();
@@ -659,10 +661,10 @@ $(function(){
      */
     $('.video-thumbnails ul').on('click','li a',function(e){
         e.preventDefault();
-        if($(this).closest('li').next().length==0)
-            $('.next-video').hide();
-        if($(this).closest('li').prev().attr('data-media-id')==0)
-            $('.prev-video').hide();
+        //if($(this).closest('li').next().length==0)
+        //    $('.next-video').hide();
+        //if($(this).closest('li').prev().attr('data-media-id')==0)
+        //    $('.prev-video').hide();
         reset_modal();
         var media_thumbs_list=$('.video-thumbnails ul');
         get_media_detail_from_thumb($(this).closest('[data-media-id]').attr('data-media-id'));
@@ -768,4 +770,62 @@ $(function(){
 
         }, 50);
     });
+    $('#mediaURL').on('blur',function(e){
+        var actual_url=$(this).val();
+
+        var list_id=actual_url.split('&list=')[1];
+        if(list_id!=undefined) {
+            ampersandPosition = list_id.indexOf('&');
+            if (ampersandPosition != -1) {
+                list_id = list_id.substring(0, ampersandPosition);
+            }
+            var youtube_key='AIzaSyA9nUxdxTScmcIWrRwPu2bvoe0quQDWiNo';
+            var youtube_api='https://www.googleapis.com/youtube/v3/playlistItems?key='+youtube_key+'&part=snippet&playlistId='+list_id+'&maxResults=20';
+            var data={};
+            ajaxHandle.ajax_req(youtube_api,'GET',data,function(res){
+                for(i=0;i<res.items.length;i++){
+                    var video_id=res.items[i].snippet.resourceId.videoId;
+                    console.log(video_id);
+                    upload_youtube(video_id);
+                };
+            });
+        }
+        else
+        {
+            var video_id = actual_url.split('v=')[1];
+            var ampersandPosition = video_id.indexOf('&');
+            if(ampersandPosition != -1) {
+                video_id = video_id.substring(0, ampersandPosition);
+            }
+            upload_youtube(video_id);
+        }
+    });
+    function upload_youtube(video_id){
+        var youtube_key='AIzaSyA9nUxdxTScmcIWrRwPu2bvoe0quQDWiNo';
+        var youtube_api='https://www.googleapis.com/youtube/v3/videos?key='+youtube_key+'&part=snippet&id='+video_id;
+        var embed_url='http://www.youtube.com/embed/'+video_id+'?rel=0';
+        var data={};
+        ajaxHandle.ajax_req(youtube_api,'GET',data,function(res){
+            console.log(res);
+            var proj_id=$('.pH_row-edit').attr('data-proj-id');
+            var url=proj_id+'/youtube_upload/';
+            $('.video-modal').fadeIn();
+            $('.body-overlay').fadeIn();
+            edit_media();
+            data={
+                'url': embed_url,
+                'thumbnail':res.items[0].snippet.thumbnails.medium.url,
+                'title':res.items[0].snippet.title,
+                'description': res.items[0].snippet.description
+            };
+            ajaxHandle.ajax_req(url,'POST',data,function(res){
+                console.log(res);
+                offset++;
+                $('.project_lists').prepend(newMediaThumb(res.id,res.title,res.description,res.type,res.media_url,res.thumbnail));
+                reset_modal();
+                load_media_in_modal(res.id,res.type,res.media_url,res.thumbnail,res.title,res.description);
+                $('.project_lists.hide').addClass('show').removeClass('hide');
+            });
+        });
+    }
 });
