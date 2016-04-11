@@ -1,3 +1,5 @@
+import os
+
 from django.contrib.auth import authenticate,login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
@@ -12,6 +14,7 @@ from rest_framework.response import Response
 
 from app.accounts.serializers import SignupSerializer, LoginSerializer
 from app.home.models import Artist
+from main.settings.development import PROJECT_ROOT
 from models import Account
 
 
@@ -54,11 +57,13 @@ def signup(request):
         serializer = SignupSerializer(data=data)
 
         if not serializer.is_valid():
-            return Response(serializer.errors,\
-                            status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
         else:
             user = serializer.save()
             artist = Artist.objects.create(user=user)
+            abspath='/static/uploads/profile_{0}'.format(artist.id)
+            path='{0}{1}'.format(PROJECT_ROOT,abspath)
+            os.mkdir(path)
             return Response({
                     'status': 'Created',
                     'message': 'User created'

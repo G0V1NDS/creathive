@@ -10,6 +10,7 @@ class Artist(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL)
     about_me = models.TextField(null=True)
     profile_pic = models.URLField(null=True, default='/static/images/user.png')
+    profile_pic_thumb = models.URLField(null=True, default='/static/images/user-small.png')
     cover_pic = models.URLField(null=True, default='/static/images/banner1.png')
 
     def __unicode__(self):

@@ -1,3 +1,6 @@
+import os
+import shutil
+
 from django.contrib.auth.decorators import login_required
 import json
 import subprocess
@@ -41,20 +44,31 @@ def project_title_image(request,id,proj_id):
     if request.method == 'POST':
         project=request.user.artist.project_set.create(artist=request.user.artist)
         proj_id=project.id
+        abspath='/static/uploads/profile_{0}/project_{1}'.format(id,proj_id)
+        path='{0}{1}'.format(PROJECT_ROOT,abspath)
+        os.mkdir(path)
+        os.mkdir('{0}/audios'.format(path))
+        os.mkdir('{0}/videos'.format(path))
+        os.mkdir('{0}/images'.format(path))
+        os.mkdir('{0}/articles'.format(path))
         project.created=timezone.now()
     elif request.method =='PUT':
         project=request.user.artist.project_set.get(id=proj_id)
     else:
         return Http404('Can not access')
     image = request.FILES.get('image')
-    path=PROJECT_ROOT+'/static/uploads/images/'
     ext =request.POST.get('ext')
-    fullname = '{0}{1}_{2}_project_thumb.{3}'.format(path,id,proj_id,ext)
+    abspath='/static/uploads/profile_{0}/project_{1}'.format(id,proj_id)
+    path='{0}{1}'.format(PROJECT_ROOT,abspath)
+    fullname = '{0}/project.{1}'.format(path,ext)
+    thumbnail = '{0}/project_thumb.png'.format(path)
     handle_uploaded_file(fullname,image)
-    url='/static/uploads/images/{0}_{1}_project_thumb.{2}'.format(id,proj_id,ext)
-    project.thumbnail=url
+    subprocess.call('ffmpeg -i {0} -y -filter scale=w=260:h=213 {1}'.format(fullname,thumbnail),shell=True)
+    os.remove(fullname)
+    absthumbnail='{0}/project_thumb.png'.format(abspath)
+    project.thumbnail=absthumbnail
     project.save()
-    return Response({'id': request.user.artist.id, 'proj_id': proj_id, 'url': url})
+    return Response({'id': request.user.artist.id, 'proj_id': proj_id, 'url': absthumbnail})
 
 
 @api_view(['POST','PUT'])
@@ -62,6 +76,13 @@ def project_update(request,id,proj_id):
     if request.method == 'POST':
         project=request.user.artist.project_set.create(artist=request.user.artist)
         proj_id=project.id
+        abspath='/static/uploads/profile_{0}/project_{1}'.format(id,proj_id)
+        path='{0}{1}'.format(PROJECT_ROOT,abspath)
+        os.mkdir(path)
+        os.mkdir('{0}/audios'.format(path))
+        os.mkdir('{0}/videos'.format(path))
+        os.mkdir('{0}/images'.format(path))
+        os.mkdir('{0}/articles'.format(path))
         project.created=timezone.now()
     elif request.method =='PUT':
         project=request.user.artist.project_set.get(id=proj_id)
@@ -91,6 +112,9 @@ def display(request,id,proj_id):
 
 def project_delete(request,id,proj_id):
     request.user.artist.project_set.get(id=proj_id).delete()
+    abspath='/static/uploads/profile_{0}/project_{1}'.format(id,proj_id)
+    path='{0}{1}'.format(PROJECT_ROOT,abspath)
+    shutil.rmtree(path)
     return HttpResponse('Deleted')
 
 
@@ -103,43 +127,39 @@ def media_upload(request,id,proj_id):
     else:
         return Http404('Can not access')
     file = request.FILES.get('media')
-    path=PROJECT_ROOT+'/static/uploads/images/'
     ext =request.POST.get('ext')
     media_type=request.POST.get('type')
-    fullname = '{0}{1}_{2}_{3}_{4}_media.{5}'.format(path,id,proj_id,media_id,media_type,ext)
-    thumbnail='{0}{1}_{2}_{3}_{4}_media.png'.format(path,id,proj_id,media_id,media_type)
+    abspath='/static/uploads/profile_{0}/project_{1}/{2}s'.format(id,proj_id,media_type)
+    path='{0}{1}'.format(PROJECT_ROOT,abspath)
+    fullname = '{0}/media_{1}.{2}'.format(path,media_id,ext)
+    absfullname = '{0}/media_{1}.{2}'.format(abspath,media_id,ext)
+    thumbnail = '{0}/media_{1}_thumb.png'.format(path,media_id)
+    absthumbnail='{0}/media_{1}_thumb.png'.format(abspath,media_id)
     handle_uploaded_file(fullname,file)
-    url='/static/uploads/images/{0}_{1}_{2}_{3}_media.{4}'.format(id,proj_id,media_id,media_type,ext)
-    thumb_url='/static/uploads/images/{0}_{1}_{2}_{3}_media.png'.format(id,proj_id,media_id,media_type)
+
     if(media_type=='video'):
         subprocess.call('ffmpeg -i {0} -ss 00:00:14.435 -filter  scale=w=260:h=213 -vframes 1 {1}'.format(fullname,thumbnail),shell=True)
-        media.thumbnail=thumb_url
         media.type=1
     elif(media_type=='audio'):
         value= subprocess.call('ffmpeg -i {0} -filter scale=w=260:h=213 {1}'.format(fullname,thumbnail),shell=True)
-        if value==0:
-            media.thumbnail=thumb_url
-        else:
-            media.thumbnail='/static/uploads/audios/audio.png'
+        if value==1:
+            absthumbnail='/static/uploads/default/audios.png'
         media.type=2
     elif(media_type=='image'):
         subprocess.call('ffmpeg -i {0} -filter scale=w=260:h=213 {1}'.format(fullname,thumbnail),shell=True)
-        media.thumbnail=thumb_url
         media.type=3
     elif(media_type=='article'):
         subprocess.call('convert -resize 260x213\! {0}[0] {1}'.format(fullname,thumbnail),shell=True)
-        media.thumbnail=thumb_url
         media.type=4
-    if media.title == 'NULL':
-        media.title='{0}{1}'.format(media.type,media_id)
-    else:
-        media.title='{0}{1}'.format(media.title,media_id)
-    media.media_url=url
+
+    media.thumbnail=absthumbnail
+    if media.title == '':
+        media.title='{0}'.format(media_id)
+    media.media_url=absfullname
     media.save()
     media=Media.objects.get(id=media.id)
     serialized=MediaSerializer(media)
-    data={'serial':serialized.data,'proj_id':proj_id,'id': request.user.artist.id,'proj_title':project.title}
-    return Response({json.dumps(data)})
+    return Response(serialized.data)
 
 
 @api_view(['PUT'])
@@ -153,6 +173,7 @@ def media_update(request,id,proj_id):
     media.description=request.data.get('description')
     media.save()
     return Response({'media_title':media.title, 'media_desc':media.description})
+
 
 @api_view(['GET'])
 def media_get(request,id,proj_id,type,offset,limit):
@@ -169,11 +190,15 @@ def media_get(request,id,proj_id,type,offset,limit):
     data={'serial':serialized.data,'loaded_media':count}
     return Response({json.dumps(data)}, status=status.HTTP_200_OK)
 
+
 @api_view(['POST'])
 def media_delete(request,id,proj_id):
     rem_mid=request.data.get('rem_mid')
-    for id in rem_mid:
-        Media.objects.get(id=id).delete()
+    for media_id in rem_mid:
+        media=Media.objects.get(id=media_id)
+        os.remove(PROJECT_ROOT+media.thumbnail)
+        os.remove(PROJECT_ROOT+media.media_url)
+        media.delete()
     return HttpResponse('Deleted')
 
 
@@ -181,26 +206,34 @@ def media_delete(request,id,proj_id):
 def profile_image(request,id):
     if request.method == 'POST':
         image = request.FILES.get('image')
-        path=PROJECT_ROOT+'/static/uploads/images/'
         ext =request.POST.get('ext')
-        fullname = path+id+'_profile_pic.'+ext
+        abspath='/static/uploads/profile_{0}'.format(id)
+        path='{0}{1}'.format(PROJECT_ROOT,abspath)
+        fullname = '{0}/profile.{1}'.format(path,ext)
+        thumbnail = '{0}/profile_thumb.png'.format(path)
+        absfullname='{0}/profile.{1}'.format(abspath,ext)
+        absthumbnail = '{0}/profile_thumb.png'.format(abspath)
         handle_uploaded_file(fullname,image)
         a=Artist.objects.get(user=id)
-        a.profile_pic='/static/uploads/images/'+id+'_profile_pic.'+ext
+        a.profile_pic=absfullname
+        a.profile_pic_thumb=absthumbnail
+        subprocess.call('ffmpeg -i {0} -y -filter scale=w=100:h=100 {1}'.format(fullname,thumbnail),shell=True)
         a.save()
-        return Response({'id': request.user.artist.id, 'url': a.profile_pic})
+        return Response({'id': request.user.artist.id, 'url': a.profile_pic, 'thumb_url': a.profile_pic_thumb})
 
 
 @api_view(['POST'])
 def profile_cover_image(request,id):
     if request.method == 'POST':
         image = request.FILES.get('image')
-        path=PROJECT_ROOT+'/static/uploads/images/'
         ext =request.POST.get('ext')
-        fullname = path+id+'_profile_cover_pic.'+ext
+        abspath='/static/uploads/profile_{0}'.format(id)
+        path='{0}{1}'.format(PROJECT_ROOT,abspath)
+        fullname = '{0}/cover.{1}'.format(path,ext)
+        absfullname='{0}/cover.{1}'.format(abspath,ext)
         handle_uploaded_file(fullname,image)
         artist=Artist.objects.get(user=id)
-        artist.cover_pic='/static/uploads/images/'+id+'_profile_cover_pic.'+ext
+        artist.cover_pic=absfullname
         artist.save()
         return Response({'id': request.user.artist.id, 'url': artist.cover_pic})
 
