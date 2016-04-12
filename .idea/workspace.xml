@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="cc1463ff-b805-40f1-98f0-6b0df6e038c7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/settings/development.py" afterPath="$PROJECT_DIR$/main/settings/development.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/wsgi.py" afterPath="$PROJECT_DIR$/main/wsgi.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
     </list>
     <ignored path="creathives.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -73,11 +73,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wsgi.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="wsgi.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/wsgi.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7002725">
-              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="17" column="43" selection-start-line="17" selection-start-column="43" selection-end-line="17" selection-end-column="43" />
+              <folding>
+                <element signature="e#226#235#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="development.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main/settings/development.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.46049047">
+              <caret line="49" column="49" selection-start-line="49" selection-start-column="49" selection-end-line="49" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -117,7 +129,6 @@
         <option value="$PROJECT_DIR$/app/accounts/models.py" />
         <option value="$PROJECT_DIR$/app/home/serializers.py" />
         <option value="$PROJECT_DIR$/static/js/_ajaxHelper.js" />
-        <option value="$PROJECT_DIR$/main/settings/development.py" />
         <option value="$PROJECT_DIR$/app/accounts/views.py" />
         <option value="$PROJECT_DIR$/app/home/models.py" />
         <option value="$PROJECT_DIR$/templates/accounts/index.html" />
@@ -130,6 +141,7 @@
         <option value="$PROJECT_DIR$/templates/home/index.html" />
         <option value="$PROJECT_DIR$/Procfile" />
         <option value="$PROJECT_DIR$/main/wsgi.py" />
+        <option value="$PROJECT_DIR$/main/settings/development.py" />
       </list>
     </option>
   </component>
@@ -738,7 +750,13 @@
       <option name="project" value="LOCAL" />
       <updated>1460449614556</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Loading user information on profile page when user is logged in.&#10;Project thumbnail and basic informaiton upload.&#10;Project list loading.&#10;&#10;Loading projet info&#10;Updating project info&#10;Deleting project&#10;&#10;Loading different catagories&#10;Multiple media deletion using checkbox&#10;&#10;Infinite scrolling&#10;Thumbnails added&#10;&#10;Media loading in view Modal&#10;1. Saperate tags for differnet medias&#10;2. Media navigation in view Modal&#10;3. Improved navigation buttons&#10; &#10; Separate directories for profile and nested projects and medias  &#10;&#10;Youtube video uploading&#10;Fixed position for media delete button">
+      <created>1460451877167</created>
+      <option name="number" value="00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1460451877167</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1030,13 +1048,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/settings/development.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7122302">
-          <caret line="44" column="21" selection-start-line="44" selection-start-column="21" selection-end-line="44" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/js/jquery-2.1.1.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33273703">
@@ -1183,8 +1194,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7002725">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="43" selection-start-line="17" selection-start-column="43" selection-end-line="17" selection-end-column="43" />
+          <folding>
+            <element signature="e#226#235#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/settings/development.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.46049047">
+          <caret line="49" column="49" selection-start-line="49" selection-start-column="49" selection-end-line="49" selection-end-column="49" />
           <folding />
         </state>
       </provider>
