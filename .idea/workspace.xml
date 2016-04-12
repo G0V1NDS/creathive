@@ -2,7 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cc1463ff-b805-40f1-98f0-6b0df6e038c7" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_1/cover.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_1/project_8/images/media_13.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_1/project_8/images/media_13_thumb.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_1/project_8/images/media_14.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_1/project_8/images/media_14_thumb.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_1/project_8/project_thumb.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_1/project_9/images/media_15.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_1/project_9/images/media_15_thumb.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_1/project_9/project_thumb.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_1/project_9/videos/media_16.mp4" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_1/project_9/videos/media_16_thumb.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_1/project_9/videos/media_17.mp4" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_1/project_9/videos/media_17_thumb.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_2/profile.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_2/profile_thumb.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_3/profile.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_3/profile_thumb.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_4/cover.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_4/profile.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_4/profile.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_4/profile_thumb.png" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/uploads/profile_1/profile.png" afterPath="$PROJECT_DIR$/static/uploads/profile_1/profile.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/uploads/profile_1/profile_thumb.png" afterPath="$PROJECT_DIR$/static/uploads/profile_1/profile_thumb.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Procfile" afterPath="$PROJECT_DIR$/Procfile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/settings/development.py" afterPath="$PROJECT_DIR$/main/settings/development.py" />
     </list>
     <ignored path="creathives.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -75,9 +100,21 @@
         <entry file="file://$PROJECT_DIR$/main/wsgi.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="43" selection-start-line="17" selection-start-column="43" selection-end-line="17" selection-end-column="43" />
+              <caret line="12" column="46" selection-start-line="12" selection-start-column="46" selection-end-line="12" selection-end-column="46" />
               <folding>
                 <element signature="e#226#235#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/home/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="169" column="55" selection-start-line="169" selection-start-column="55" selection-end-line="169" selection-end-column="55" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -86,9 +123,11 @@
       <file leaf-file-name="development.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main/settings/development.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.46049047">
-              <caret line="49" column="49" selection-start-line="49" selection-start-column="49" selection-end-line="49" selection-end-column="49" />
-              <folding />
+            <state vertical-scroll-proportion="0.12103408">
+              <caret line="108" column="70" selection-start-line="108" selection-start-column="70" selection-end-line="108" selection-end-column="70" />
+              <folding>
+                <element signature="e#381#390#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -137,8 +176,8 @@
         <option value="$PROJECT_DIR$/static/css/style.css" />
         <option value="$PROJECT_DIR$/static/js/_home.js" />
         <option value="$PROJECT_DIR$/templates/home/index.html" />
-        <option value="$PROJECT_DIR$/Procfile" />
         <option value="$PROJECT_DIR$/main/wsgi.py" />
+        <option value="$PROJECT_DIR$/Procfile" />
         <option value="$PROJECT_DIR$/main/settings/development.py" />
       </list>
     </option>
@@ -760,23 +799,30 @@
       <option name="project" value="LOCAL" />
       <updated>1460452127039</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Loading user information on profile page when user is logged in.&#10;Project thumbnail and basic informaiton upload.&#10;Project list loading.&#10;&#10;Loading projet info&#10;Updating project info&#10;Deleting project&#10;&#10;Loading different catagories&#10;Multiple media deletion using checkbox&#10;&#10;Infinite scrolling&#10;Thumbnails added&#10;&#10;Media loading in view Modal&#10;1. Saperate tags for differnet medias&#10;2. Media navigation in view Modal&#10;3. Improved navigation buttons&#10; &#10; Separate directories for profile and nested projects and medias  &#10;&#10;Youtube video uploading&#10;Fixed position for media delete button&#10;&#10;WhiteNoise middleware for static files for heroku">
+      <created>1460452178477</created>
+      <option name="number" value="00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1460452178477</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="53" y="24" width="1867" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21472053" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33898306" sideWeight="0.50636417" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32982844" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299435" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.54689264" sideWeight="0.49363586" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21472053" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32982844" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299435" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.54689264" sideWeight="0.49363586" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -784,7 +830,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3299435" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -835,27 +880,14 @@
     <MESSAGE value="Loading user information on profile page when user is logged in.&#10;Project thumbnail and basic informaiton upload.&#10;Project list loading.&#10;&#10;Loading projet info&#10;Updating project info&#10;Deleting project&#10;&#10;Loading different catagories&#10;Multiple media deletion using checkbox&#10;&#10;Infinite scrolling&#10;Thumbnails added&#10;&#10;Media loading in view Modal&#10;1. Saperate tags for differnet medias&#10;2. Media navigation in view Modal&#10;3. Improved navigation buttons&#10; &#10; Separate directories for profile and nested projects and medias  &#10;" />
     <MESSAGE value="Loading user information on profile page when user is logged in.&#10;Project thumbnail and basic informaiton upload.&#10;Project list loading.&#10;&#10;Loading projet info&#10;Updating project info&#10;Deleting project&#10;&#10;Loading different catagories&#10;Multiple media deletion using checkbox&#10;&#10;Infinite scrolling&#10;Thumbnails added&#10;&#10;Media loading in view Modal&#10;1. Saperate tags for differnet medias&#10;2. Media navigation in view Modal&#10;3. Improved navigation buttons&#10; &#10; Separate directories for profile and nested projects and medias  &#10;&#10;Youtube video uploading" />
     <MESSAGE value="Loading user information on profile page when user is logged in.&#10;Project thumbnail and basic informaiton upload.&#10;Project list loading.&#10;&#10;Loading projet info&#10;Updating project info&#10;Deleting project&#10;&#10;Loading different catagories&#10;Multiple media deletion using checkbox&#10;&#10;Infinite scrolling&#10;Thumbnails added&#10;&#10;Media loading in view Modal&#10;1. Saperate tags for differnet medias&#10;2. Media navigation in view Modal&#10;3. Improved navigation buttons&#10; &#10; Separate directories for profile and nested projects and medias  &#10;&#10;Youtube video uploading&#10;Fixed position for media delete button" />
-    <option name="LAST_COMMIT_MESSAGE" value="Loading user information on profile page when user is logged in.&#10;Project thumbnail and basic informaiton upload.&#10;Project list loading.&#10;&#10;Loading projet info&#10;Updating project info&#10;Deleting project&#10;&#10;Loading different catagories&#10;Multiple media deletion using checkbox&#10;&#10;Infinite scrolling&#10;Thumbnails added&#10;&#10;Media loading in view Modal&#10;1. Saperate tags for differnet medias&#10;2. Media navigation in view Modal&#10;3. Improved navigation buttons&#10; &#10; Separate directories for profile and nested projects and medias  &#10;&#10;Youtube video uploading&#10;Fixed position for media delete button" />
+    <MESSAGE value="Loading user information on profile page when user is logged in.&#10;Project thumbnail and basic informaiton upload.&#10;Project list loading.&#10;&#10;Loading projet info&#10;Updating project info&#10;Deleting project&#10;&#10;Loading different catagories&#10;Multiple media deletion using checkbox&#10;&#10;Infinite scrolling&#10;Thumbnails added&#10;&#10;Media loading in view Modal&#10;1. Saperate tags for differnet medias&#10;2. Media navigation in view Modal&#10;3. Improved navigation buttons&#10; &#10; Separate directories for profile and nested projects and medias  &#10;&#10;Youtube video uploading&#10;Fixed position for media delete button&#10;&#10;WhiteNoise middleware for static files for heroku" />
+    <option name="LAST_COMMIT_MESSAGE" value="Loading user information on profile page when user is logged in.&#10;Project thumbnail and basic informaiton upload.&#10;Project list loading.&#10;&#10;Loading projet info&#10;Updating project info&#10;Deleting project&#10;&#10;Loading different catagories&#10;Multiple media deletion using checkbox&#10;&#10;Infinite scrolling&#10;Thumbnails added&#10;&#10;Media loading in view Modal&#10;1. Saperate tags for differnet medias&#10;2. Media navigation in view Modal&#10;3. Improved navigation buttons&#10; &#10; Separate directories for profile and nested projects and medias  &#10;&#10;Youtube video uploading&#10;Fixed position for media delete button&#10;&#10;WhiteNoise middleware for static files for heroku" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/accounts/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="49" selection-start-line="14" selection-start-column="49" selection-end-line="14" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/accounts/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="129" column="57" selection-start-line="129" selection-start-column="57" selection-end-line="129" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/accounts/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1150,13 +1182,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/home/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.92244416">
-          <caret line="193" column="0" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.106683806">
@@ -1188,6 +1213,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.11989101">
+          <caret line="2" column="4" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Heroku">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/wsgi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="46" selection-start-line="12" selection-start-column="46" selection-end-line="12" selection-end-column="46" />
+          <folding>
+            <element signature="e#226#235#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/home/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="169" column="55" selection-start-line="169" selection-start-column="55" selection-end-line="169" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Procfile">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1196,21 +1257,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/wsgi.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="43" selection-start-line="17" selection-start-column="43" selection-end-line="17" selection-end-column="43" />
-          <folding>
-            <element signature="e#226#235#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/settings/development.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46049047">
-          <caret line="49" column="49" selection-start-line="49" selection-start-column="49" selection-end-line="49" selection-end-column="49" />
-          <folding />
+        <state vertical-scroll-proportion="0.12103408">
+          <caret line="108" column="70" selection-start-line="108" selection-start-column="70" selection-end-line="108" selection-end-column="70" />
+          <folding>
+            <element signature="e#381#390#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

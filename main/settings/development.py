@@ -12,9 +12,8 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-
 import datetime
-
+import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.abspath(os.path.dirname(BASE_DIR))
 
@@ -43,6 +42,7 @@ INSTALLED_APPS = (
     'app.home',
     'app.accounts',
     'rest_framework',
+    'herokuapp'
 
 )
 
@@ -106,14 +106,15 @@ WSGI_APPLICATION = 'main.wsgi.application'
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'creathive',
-            'USER': 'root',
-            'PASSWORD': 'devildare',
-            'HOST': 'localhost',
-            'PORT': '',
-        }
+    "default": dj_database_url.config(default='postgres://localhost'),
+    # 'default': {
+    #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #         'NAME': 'creathive',
+    #         'USER': 'lucky',
+    #         'PASSWORD': 'devildare',
+    #         'HOST': 'localhost',
+    #         'PORT': '',
+    #     }
 }
 
 AUTHENTICATION_BACKENDS = (
