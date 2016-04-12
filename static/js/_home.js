@@ -765,7 +765,6 @@ $(function(){
             var media_type=get_media_type(classname);
             var proj_id=$('#rightView_content').find('.show[data-proj-id]').first().attr('data-proj-id');
             load_media(media_type,proj_id,'scroll',offset,offset+3);
-            console.log('content loaded');
         }
 
         }, 50);

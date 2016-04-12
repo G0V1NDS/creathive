@@ -1013,14 +1013,14 @@ body{
 		display: none;
 	}
 	.remove-mid{
-		position: absolute;
-		top: auto;
+		position: fixed;
+		top: 500px;
 		right: 95px;
 		cursor: pointer;
 	}
 	.cancel-remove-mid{
-		top: auto;
-		position: absolute;
+		top: 500px;
+		position: fixed;
 		right: 55px;
 		cursor: pointer;
 	}
