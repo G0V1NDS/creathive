@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="cc1463ff-b805-40f1-98f0-6b0df6e038c7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/settings/development.py" afterPath="$PROJECT_DIR$/main/settings/development.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/wsgi.py" afterPath="$PROJECT_DIR$/main/wsgi.py" />
     </list>
     <ignored path="creathives.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -756,7 +754,13 @@
       <option name="project" value="LOCAL" />
       <updated>1460451877167</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Loading user information on profile page when user is logged in.&#10;Project thumbnail and basic informaiton upload.&#10;Project list loading.&#10;&#10;Loading projet info&#10;Updating project info&#10;Deleting project&#10;&#10;Loading different catagories&#10;Multiple media deletion using checkbox&#10;&#10;Infinite scrolling&#10;Thumbnails added&#10;&#10;Media loading in view Modal&#10;1. Saperate tags for differnet medias&#10;2. Media navigation in view Modal&#10;3. Improved navigation buttons&#10; &#10; Separate directories for profile and nested projects and medias  &#10;&#10;Youtube video uploading&#10;Fixed position for media delete button">
+      <created>1460452127039</created>
+      <option name="number" value="00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1460452127039</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="ToolWindowManager">
