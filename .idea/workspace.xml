@@ -2,28 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cc1463ff-b805-40f1-98f0-6b0df6e038c7" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_4/project_13/articles/media_31.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_4/project_13/articles/media_31_thumb.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_4/project_13/articles/media_32.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_4/project_13/articles/media_32_thumb.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_4/project_13/audios/media_39.mp3" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_4/project_13/audios/media_39_thumb.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_4/project_13/images/media_27.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_4/project_13/images/media_27_thumb.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_4/project_13/images/media_28.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_4/project_13/images/media_28_thumb.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_4/project_13/images/media_29.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_4/project_13/images/media_29_thumb.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_4/project_13/images/media_30.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_4/project_13/images/media_30_thumb.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_4/project_13/project_thumb.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_4/project_13/videos/media_35.mp4" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_4/project_13/videos/media_35_thumb.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_4/project_13/videos/media_36.mp4" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_4/project_13/videos/media_36_thumb.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_4/project_13/videos/media_37.mp4" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/profile_4/project_13/videos/media_37_thumb.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Procfile" afterPath="$PROJECT_DIR$/Procfile" />
     </list>
     <ignored path="creathives.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -72,11 +52,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/home/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.44761905">
+            <state vertical-scroll-proportion="-7.580645">
               <caret line="40" column="44" selection-start-line="40" selection-start-column="41" selection-end-line="40" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Procfile" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Procfile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -127,6 +117,7 @@
         <option value="$PROJECT_DIR$/static/css/style.css" />
         <option value="$PROJECT_DIR$/static/js/_home.js" />
         <option value="$PROJECT_DIR$/templates/home/index.html" />
+        <option value="$PROJECT_DIR$/Procfile" />
       </list>
     </option>
   </component>
@@ -717,12 +708,18 @@
       <option name="project" value="LOCAL" />
       <updated>1460437147469</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Loading user information on profile page when user is logged in.&#10;Project thumbnail and basic informaiton upload.&#10;Project list loading.&#10;&#10;Loading projet info&#10;Updating project info&#10;Deleting project&#10;&#10;Loading different catagories&#10;Multiple media deletion using checkbox&#10;&#10;Infinite scrolling&#10;Thumbnails added&#10;&#10;Media loading in view Modal&#10;1. Saperate tags for differnet medias&#10;2. Media navigation in view Modal&#10;3. Improved navigation buttons&#10; &#10; Separate directories for profile and nested projects and medias  &#10;&#10;Youtube video uploading&#10;Fixed position for media delete button">
+      <created>1460445416722</created>
+      <option name="number" value="00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1460445416722</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="53" y="24" width="1867" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21472053" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -733,7 +730,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33333334" sideWeight="0.49363586" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33333334" sideWeight="0.49363586" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -799,13 +796,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/home/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/accounts/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1160,8 +1150,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/home/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44761905">
+        <state vertical-scroll-proportion="-7.580645">
           <caret line="40" column="44" selection-start-line="40" selection-start-column="41" selection-end-line="40" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Procfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
