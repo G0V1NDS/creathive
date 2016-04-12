@@ -1,6 +1,11 @@
 beautifulsoup4==4.4.1
 boto==2.39.0
+dj-database-url==0.4.1
 Django==1.8
+django-herokuapp==0.9.20
+django-require==1.0.10
+django-require-s3==1.0.0
+django-storages==1.4.1
 djangorestframework==3.3.2
 djangorestframework-jwt==1.7.2
 djrill==2.0
@@ -14,11 +19,14 @@ PyJWT==1.4.0
 pytest==2.9.0
 python-openid==2.2.5
 python-social-auth==0.2.14
+pytz==2016.3
 requests==2.9.1
 requests-oauthlib==0.6.1
 schedule==0.3.2
+sh==1.11
 simplejson==3.8.2
 six==1.10.0
+waitress==0.8.10
 wheel==0.26.0
 whitenoise==3.0
 xlrd==0.9.4
