@@ -14,6 +14,8 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 import datetime
 import dj_database_url
+from django.conf.project_template.project_name.settings import DATABASES
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.abspath(os.path.dirname(BASE_DIR))
 
@@ -104,18 +106,18 @@ WSGI_APPLICATION = 'main.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
+DATABASES['default'] = dj_database_url.config()
 
-DATABASES = {
-    "default": dj_database_url.config()
-    # 'default': {
-    #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #         'NAME': 'creathive',
-    #         'USER': 'lucky',
-    #         'PASSWORD': 'devildare',
-    #         'HOST': 'localhost',
-    #         'PORT': '',
-    #     }
-}
+# DATABASES = {
+#     # 'default': {
+#     #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#     #         'NAME': 'creathive',
+#     #         'USER': 'lucky',
+#     #         'PASSWORD': 'devildare',
+#     #         'HOST': 'localhost',
+#     #         'PORT': '',
+#     #     }
+# }
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
