@@ -20,4 +20,5 @@ schedule==0.3.2
 simplejson==3.8.2
 six==1.10.0
 wheel==0.26.0
+whitenoise==3.0
 xlrd==0.9.4
